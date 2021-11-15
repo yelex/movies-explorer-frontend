@@ -1,10 +1,11 @@
 import './Main.css';
 import React from 'react';
+import Promo from '../Promo/Promo';
 
 function Main() {
   return (
-    <div className="Main">
-      you in main
+    <div className="main">
+      <Promo/>
     </div>
   );
 }

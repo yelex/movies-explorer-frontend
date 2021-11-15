@@ -8,7 +8,6 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import Navigation from '../Navigation/Navigation';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -16,7 +15,6 @@ function App() {
   return (
     <div className="page">
       <Header/>
-      <Navigation/>
         <Switch>
           <Route path="/movies">
             <Movies />
