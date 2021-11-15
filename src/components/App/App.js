@@ -12,6 +12,11 @@ import Footer from '../Footer/Footer';
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
+  
+  React.useEffect(()=>{
+    document.title = "Диплом"
+  })
+
   return (
     <div className="page">
       <Header/>
