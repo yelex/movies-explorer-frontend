@@ -2,7 +2,7 @@ import './AboutProject.css';
 import React from 'react';
 import Head from '../Head/Head';
 
-function AboutProject(props) {
+function AboutProject() {
 
     return (
         <section className="about">
