@@ -1,0 +1,38 @@
+.footer{
+    margin: 79px 0 0;
+}
+
+.footer__title{
+    margin: 0 0 20px;
+    text-align: center;
+    color: #A0A0A0;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.footer__content{
+    margin: 0 70px;
+    border-top: 1px solid #e8e8e8;
+    padding: 20px 0;
+    display: flex;
+}
+
+.footer__nav{
+    margin: 0 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.footer__links{
+    margin: 0;
+    padding-left: 0;
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.footer__link{
+    text-decoration: none;
+    color: #000;
+}

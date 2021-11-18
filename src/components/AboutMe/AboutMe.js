@@ -30,7 +30,7 @@ function AboutMe() {
                             </li>
                             <li className="student__contact">
                                 <a href="#" className="student__contact-link">
-                                        Github
+                                    Github
                                 </a>
                             </li>
                         </ul>
