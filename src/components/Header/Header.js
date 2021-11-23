@@ -1,11 +1,12 @@
 import './Header.css';
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import logoPath from '../../images/header-logo.svg';
 
 function Header() {
+  const location = useLocation();
   const history = useHistory();
-
+  console.log(location.pathname)
   return (
     <header className="header">
       <div className="header__container">

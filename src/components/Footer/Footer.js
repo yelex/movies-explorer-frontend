@@ -8,7 +8,7 @@ function Footer() {
         Учебный проект Яндекс.Практикум х BeatFilm.
       </p>
       <div className="footer__content">
-        <p class="footer__author">&copy; 2021</p>
+        <p className="footer__author">&copy; 2021</p>
         <nav className="footer__nav">
           <ul className="footer__links">
             <li className="footer__link-item">
