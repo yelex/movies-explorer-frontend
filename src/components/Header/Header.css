@@ -1,8 +1,11 @@
 .header{
-    background-color: #073042;
     min-height: 74px;
     display: flex;
     justify-content: center;
+}
+
+.header_bg_landing{
+    background-color: #073042;
 }
 
 .header__container{

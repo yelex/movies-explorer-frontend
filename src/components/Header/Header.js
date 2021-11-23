@@ -6,9 +6,9 @@ import logoPath from '../../images/header-logo.svg';
 function Header() {
   const location = useLocation();
   const history = useHistory();
-  console.log(location.pathname)
+
   return (
-    <header className="header">
+    <header className={`header ${location.pathname==='/' ? 'header_bg_landing' : ''}`}>
       <div className="header__container">
         <img src={ logoPath } alt="Логотип" className="header__logo" onClick={()=>{history.push('/')}}/>
         <ul className="header__list">
