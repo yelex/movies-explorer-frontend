@@ -24,12 +24,12 @@ function AboutMe() {
                         </p>
                         <ul className="student__contacts">
                             <li className="student__contact">
-                                <a href="#" className="student__contact-link">
+                                <a href="https://ru-ru.facebook.com" className="student__contact-link">
                                     Facebook
                                 </a>
                             </li>
                             <li className="student__contact">
-                                <a href="#" className="student__contact-link">
+                                <a href="https://github.com" className="student__contact-link">
                                     Github
                                 </a>
                             </li>
@@ -43,7 +43,7 @@ function AboutMe() {
                 <ul className="student__portfolio-links">
                     <li className="student__portfolio-item">
                         <div className="student__text-container">
-                            <a href="#" className="student__portfolio-link">
+                            <a href="https://github.com" className="student__portfolio-link">
                                 Статичный сайт
                             </a>
                             <img src={ arrowPath } alt="Стрелка" className="student__arrow" />
@@ -51,7 +51,7 @@ function AboutMe() {
                     </li>
                     <li className="student__portfolio-item">
                         <div className="student__text-container">
-                            <a href="#" className="student__portfolio-link">
+                            <a href="https://github.com" className="student__portfolio-link">
                                 Адаптивный сайт
                             </a>
                             <img src={ arrowPath } alt="Стрелка" className="student__arrow" />
@@ -59,7 +59,7 @@ function AboutMe() {
                     </li>
                     <li className="student__portfolio-item">
                         <div className="student__text-container">
-                            <a href="#" className="student__portfolio-link">
+                            <a href="https://github.com" className="student__portfolio-link">
                                 Одностраничное приложение
                             </a>
                             <img src={ arrowPath } alt="Стрелка" className="student__arrow" />

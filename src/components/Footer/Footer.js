@@ -12,17 +12,17 @@ function Footer() {
         <nav className="footer__nav">
           <ul className="footer__links">
             <li className="footer__link-item">
-              <a href="#" className="footer__link">
+              <a href="https://github.com" className="footer__link">
                 Яндекс.Практикум
               </a>
             </li>
             <li className="footer__link-item">
-              <a href="#" className="footer__link">
+              <a href="https://github.com" className="footer__link">
                 Github
               </a>
             </li>
             <li className="footer__link-item">
-              <a href="#" className="footer__link">
+              <a href="https://github.com" className="footer__link">
                 Facebook
               </a>
             </li>
