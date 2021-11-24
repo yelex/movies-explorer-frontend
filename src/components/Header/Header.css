@@ -21,16 +21,53 @@
     list-style-type: none;
     display: flex;
     align-items: center;
+    
 }
+
+.header__list_gap_auth{
+    gap: 30px;
+}
+
+.header__list_gap_movies{
+    gap: 16px;
+}
+
 
 .header__link{
     text-decoration: none;
+}
+
+.header__link_color_black{
+    color: #000;
+}
+
+.header__link_color_white{
+    color: #fff;
 }
 
 .header__btn{
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
+    cursor: pointer;
+}
+
+.header__column{
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.header__column_align_left{
+    justify-content: flex-start;
+}
+
+.header__column_align_center{
+    justify-content: center;
+}
+
+.header__column_align_right{
+    justify-content: flex-end;
 }
 
 .header__btn_type_signin{
@@ -39,14 +76,8 @@
     padding: 8px 20px;
 }
 
-.header__btn_type_signup{
-    margin-right: 30px;
-}
-
-.header__link_type_signin{
-    color: #000;
-}
-
-.header__link_type_signup{
-    color: #fff;
+.header__btn_type_account{
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    padding: 8px 7.25px;
 }

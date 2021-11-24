@@ -12,6 +12,8 @@ import Footer from '../Footer/Footer';
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
+
+  const [ isLoggedIn, setIsLoggedIn ] = React.useState(true);
   
   React.useEffect(()=>{
     document.title = "Диплом"
@@ -19,7 +21,7 @@ function App() {
 
   return (
     <div className="page">
-      <Header/>
+      <Header isLoggedIn={ isLoggedIn }/>
         <Switch>
           <Route path="/movies">
             <Movies />
