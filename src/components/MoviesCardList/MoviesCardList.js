@@ -16,6 +16,11 @@ function MoviesCardList() {
         <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
         <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
       </ul>
+      <button type="button" className="movies__more">
+        <p className="movies__more-text">
+          Ещё
+        </p>
+      </button>
     </section>
   );
 }

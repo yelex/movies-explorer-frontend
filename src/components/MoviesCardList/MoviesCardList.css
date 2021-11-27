@@ -7,3 +7,27 @@
     flex-wrap: wrap;
     gap: 37px 24px;
 }
+
+.movies__more{
+    max-width: 1140px;
+    width: 100%;
+    margin: 60px auto 80px;
+    display: flex;
+    justify-content: center;
+    background-color: #f9f9f9;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.movies__more:hover{
+    opacity: 0.7;
+}
+
+.movies__more-text{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+}
+
