@@ -8,6 +8,10 @@
     gap: 37px 24px;
 }
 
+.movies__list_saved{
+    margin: 0 auto 107px;
+}
+
 .movies__more{
     max-width: 1140px;
     width: 100%;

@@ -6,6 +6,10 @@
     overflow: auto;
 }
 
+.card:hover{
+    cursor: pointer;
+}
+
 .card__image{
     width: 100%;
     height: 203px;
@@ -35,6 +39,17 @@
     padding: 0;
     transition: all .2s linear;
     cursor: pointer;
+}
+
+.card__btn_crossed{
+    background-image: url('../../images/card-cross.svg');
+    width: 7px;
+    height: 7px;
+    display: none;
+}
+
+.card__btn_visible{
+    display: block;
 }
 
 .card__btn:hover{
