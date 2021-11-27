@@ -1,5 +1,8 @@
 .footer{
     margin: 79px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .footer__title{
@@ -12,6 +15,8 @@
 }
 
 .footer__content{
+    max-width: 1140px;
+    width: 100%;
     margin: 0 70px;
     border-top: 1px solid #e8e8e8;
     padding: 20px 0;

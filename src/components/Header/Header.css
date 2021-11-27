@@ -9,6 +9,7 @@
 
 .header__container{
     display: flex;
+    max-width: 1140px;
     width: 100%;
     margin: 18px 70px;
     box-sizing: border-box;

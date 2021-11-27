@@ -1,11 +1,12 @@
 .hero{
     background-color: #073042;
-    box-sizing: content-box;
     display: flex;
+    justify-content: center;
 }
 
 .hero__container{
     width: 100%;
+    max-width: 1140px;
     margin: 75px 70px 50px;
     display: flex;
     flex-wrap: wrap-reverse;

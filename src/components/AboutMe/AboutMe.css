@@ -1,9 +1,11 @@
 .student{
     background-color: #fff;
     display: flex;
+    justify-content: center;
 }
 
 .student__container{
+    max-width: 1140px;
     width: 100%;
     margin: 110px 70px 125px;
 }
