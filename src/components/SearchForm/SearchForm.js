@@ -16,7 +16,7 @@ function SearchForm(props) {
               className="search-form__form" 
               >
           <div className="search-form__input-container">
-            <input value={ props.email } 
+            <input value={ props.film } 
                           className="search-form__input" 
                           id="search-form" name="search-form" type="text" 
                           placeholder="Фильм" minLength="2" 
