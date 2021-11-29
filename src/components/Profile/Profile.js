@@ -1,11 +1,14 @@
 import './Profile.css';
 import React from 'react';
+import Header from '../Header/Header';
 
 function Profile(props) {
   const [ name, setName ] = React.useState('Виталий');
   const [ email, setEmail ] = React.useState('pochta@yandex.ru');
 
   return (
+    <>
+    <Header/>
     <section className="profile">
       <form name="profileForm" action="#" 
             className="profile__container">
@@ -35,6 +38,7 @@ function Profile(props) {
         </ul>
       </form>
     </section>
+    </>
   );
 }
 

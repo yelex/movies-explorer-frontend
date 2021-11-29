@@ -47,13 +47,13 @@ function Header(props) {
           <div className="header__column header__column_align_right">
             <ul className="header__list header__list_gap_auth">
               <li className="header__btn header__btn_type_signup">
-                <Link to='/sign-up' className="header__link header__link_color_white">
+                <Link to='/signup' className="header__link header__link_color_white">
                   Регистрация
                 </Link>
               </li>
               <li className="header__btn header__btn_type_signin">
-                <Link to='/sign-up' className="header__link header__link_color_black">
-                    Войти
+                <Link to='/signin' className="header__link header__link_color_black">
+                  Войти
                 </Link>
               </li>
             </ul>

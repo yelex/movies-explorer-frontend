@@ -6,8 +6,6 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -21,7 +19,6 @@ function App() {
 
   return (
     <div className="page">
-      <Header isLoggedIn={ isLoggedIn }/>
         <Switch>
           <Route path="/movies">
             <Movies />

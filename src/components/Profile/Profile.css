@@ -67,6 +67,7 @@
     color: #000;
     border: none;
     background: transparent;
+    cursor: pointer;
 }
 
 .profile__btn_color_red{
