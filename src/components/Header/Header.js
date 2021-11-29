@@ -3,8 +3,10 @@ import React from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import logoPath from '../../images/header-logo.svg';
 import accountPath from '../../images/header-account.svg';
+import { IsLoggedInContext } from '../../contexts/IsLoggedInContext';
 
-function Header(props) {
+function Header() {
+  const isLoggedIn = React.useContext(IsLoggedInContext);
   const location = useLocation();
   const history = useHistory();
 
@@ -14,7 +16,7 @@ function Header(props) {
         <div className="header__column header__column_align_left">
           <img src={ logoPath } alt="Логотип" className="header__logo" onClick={()=>{history.push('/')}}/>
         </div>
-        {props.isLoggedIn ? 
+        {isLoggedIn ? 
         <>
           <div className="header__column header__column_align_center">
             <ul className="header__list header__list_gap_movies">
