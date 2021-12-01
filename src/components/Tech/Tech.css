@@ -52,3 +52,27 @@
     flex-basis: 90px;
     box-sizing: border-box;
 }
+
+@media screen and (max-width: 1279px) {
+    .tech__container{
+        margin: 90px 50px;
+    }
+
+    .tech__text{
+        font-size: 12px;
+        line-height: 18px;
+        margin: 22px auto 0;
+    }
+
+    .tech__list{
+        margin: 83px 0 0;
+        gap: 10px;
+    }
+
+    .tech__list-item{
+        border-radius: 10px;
+        flex-basis: 84px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
