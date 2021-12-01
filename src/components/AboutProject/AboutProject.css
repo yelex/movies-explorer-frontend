@@ -16,7 +16,6 @@
 }
 
 .about__row_type_text{
-    flex-wrap: wrap;
     margin-top: 70px;
 }
 
@@ -73,4 +72,22 @@
     background: transparent;
     font-weight: 500;
     color: #A0A0A0;
+}
+
+@media screen and (max-width: 1279px) {
+    .about__container{
+        margin: 90px 50px;
+    }
+
+    .about__row_type_text{
+        gap: 30px;
+    }
+
+    .about__text{
+        margin: 22px 0 0 0;
+    }
+
+    .about__row_type_status-bar{
+        margin-top: 93px;
+    }
 }
