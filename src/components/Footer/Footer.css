@@ -22,6 +22,8 @@
     border-top: 1px solid #e8e8e8;
     padding: 20px 0;
     display: flex;
+    font-size: 13px;
+    line-height: 16px;
 }
 
 .footer__nav{
@@ -41,4 +43,15 @@
 .footer__link{
     text-decoration: none;
     color: #000;
+}
+
+.footer__author{
+    margin: 0;
+}
+
+@media screen and (max-width: 1279px) {
+    .footer__content{
+        max-width: calc(100% - 60px);
+        margin: 0 30px;
+    }
 }
