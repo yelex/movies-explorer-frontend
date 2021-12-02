@@ -8,11 +8,11 @@ import Header from '../Header/Header';
 function Movies() {
   return (
     <>
-    <Header/>
-    <div className="movies">
-      <SearchForm/>
-      <MoviesCardList/>
-    </div>
+    <Header isLanding={false}/>
+
+    <SearchForm/>
+    <MoviesCardList isSaved={false}/>
+
     <Footer/>
     </>
   );

@@ -1,66 +1,68 @@
 import './Header.css';
 import React from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import logoPath from '../../images/header-logo.svg';
-import accountPath from '../../images/header-account.svg';
 import { IsLoggedInContext } from '../../contexts/IsLoggedInContext';
+import MainLogo from '../ui/MainLogo/MainLogo';
+import Navigation from '../Navigation/Navigation';
+import ProfileBtn from '../ui/ProfileBtn/ProfileBtn';
+import AuthNav from '../AuthNav/AuthNav';
+import BurgerBtn from '../ui/BurgerBtn/BurgerBtn';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-function Header() {
+function Header(props) {
   const isLoggedIn = React.useContext(IsLoggedInContext);
-  const location = useLocation();
-  const history = useHistory();
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen ] = React.useState(false);
+  const isMobile = width <= 768;
+
+  function handleBurgerBtnClick(){
+    setIsBurgerMenuOpen(true);
+  }
+
+  function handleCloseBurgerMenu(){
+    setIsBurgerMenuOpen(false);
+  }
+
+  const updateWidth = () => {
+    setWidth(window.innerWidth);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('resize', updateWidth)
+    return () => {
+      window.removeEventListener('resize', updateWidth)
+    }
+  }, [])
 
   return (
-    <header className={`header ${location.pathname==='/' ? 'header_bg_landing' : ''}`}>
+    <header className={`header ${props.isLanding ? 'header_bg_landing' : ''}`}>
       <div className="header__container">
         <div className="header__column header__column_align_left">
-          <img src={ logoPath } alt="Логотип" className="header__logo" onClick={()=>{history.push('/')}}/>
+          <MainLogo/>
         </div>
-        {isLoggedIn ? 
-        <>
-          <div className="header__column header__column_align_center">
-            <ul className="header__list header__list_gap_movies">
-              <li className="header__btn">
-                <Link to='/movies' className="header__link header__link_color_black">
-                  Фильмы
-                </Link>
-              </li>
-              <li className="header__btn">
-                <Link to='/saved-movies' className="header__link header__link_color_black">
-                  Сохраненные фильмы
-                </Link>
-              </li>
-            </ul>
-          </div>
+
+        {!isMobile && isLoggedIn &&
+          (<>
+            <div className="header__column header__column_align_center">
+              <Navigation/>
+            </div>
+            <div className="header__column header__column_align_right">
+              <ProfileBtn/>
+            </div>
+          </>)}
+
+        {!isMobile && !isLoggedIn && (
+        <div className="header__column header__column_align_right">
+          <AuthNav/>
+          </div>)}
+
+        {isMobile && isLoggedIn && (
+          <>
           <div className="header__column header__column_align_right">
-            <ul className="header__list header__list_gap_movies">
-              <li className="header__btn">
-                <Link to='/profile' className="header__link header__link_color_black">
-                  Аккаунт
-                </Link>
-              </li>
-              <li className="header__btn header__btn_type_account">
-                <img src={ accountPath } alt="Логотип аккаунта" className="header__logo" onClick={()=>{history.push('/profile')}}/>
-              </li>
-            </ul>
+            <BurgerBtn handleClick={handleBurgerBtnClick}/>
           </div>
-        </>
-        :
-          <div className="header__column header__column_align_right">
-            <ul className="header__list header__list_gap_auth">
-              <li className="header__btn header__btn_type_signup">
-                <Link to='/signup' className="header__link header__link_color_white">
-                  Регистрация
-                </Link>
-              </li>
-              <li className="header__btn header__btn_type_signin">
-                <Link to='/signin' className="header__link header__link_color_black">
-                  Войти
-                </Link>
-              </li>
-            </ul>
-          </div>
-        }
+          <BurgerMenu isOpen={isBurgerMenuOpen} closeMenu={handleCloseBurgerMenu}/>
+          </>
+          )}
         
       </div>
     </header>

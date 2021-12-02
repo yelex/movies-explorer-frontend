@@ -10,7 +10,7 @@ import Header from '../Header/Header';
 function Main() {
   return (
     <>
-    <Header/>
+    <Header isLanding={true}/>
     <div className="main">
       <Promo/>
       <AboutProject/>

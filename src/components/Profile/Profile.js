@@ -8,7 +8,7 @@ function Profile(props) {
 
   return (
     <>
-    <Header/>
+    <Header isLanding={false}/>
     <section className="profile">
       <form name="profileForm" action="#" 
             className="profile__container">
