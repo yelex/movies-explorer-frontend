@@ -1,6 +1,8 @@
 .profile{
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .profile__container{
@@ -9,7 +11,8 @@
     align-items: center;
     max-width: 410px;
     width: 100%;
-    margin: 74px 0 70px;
+    margin: 0;
+    height: 482px;
 }
 
 .profile__greetings{
@@ -74,4 +77,9 @@
     color: #FF3055;
 }
 
-
+@media screen and (max-width: 1279px) {
+    .profile__container{
+        margin: 0;
+        height: 445px;
+    }
+}
