@@ -79,11 +79,6 @@
 @media screen and (max-width: 1279px) {
     .profile__container{
         margin: 0;
-    }
-}
-
-@media screen and (max-width: 1279px) {
-    .profile__container{
         max-width: 260px;
     }
 }
