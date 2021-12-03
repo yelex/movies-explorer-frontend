@@ -6,7 +6,7 @@ function Login() {
   return (
     <AuthForm formName="login" 
     submitBtnText="Войти" 
-    title="Добро пожаловать!">
+    title="Рады видеть!">
       <p className="auth__caption">
       Ещё не зарегистрированы? <Link to="/signup" className="auth__link">Регистрация</Link>
       </p>

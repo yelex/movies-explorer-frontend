@@ -6,7 +6,7 @@ function Register() {
   return (
     <AuthForm formName="register" 
     submitBtnText="Зарегистрироваться" 
-    title="Рады видеть!">
+    title="Добро пожаловать!">
       <p className="auth__caption">
       Уже зарегистрированы? <Link to="/signin" className="auth__link">Войти</Link>
       </p>
