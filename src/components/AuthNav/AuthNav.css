@@ -31,3 +31,14 @@
 .auth-nav__link_color_white{
     color: #fff;
 }
+
+@media screen and (max-width: 767px) {
+    .auth-nav__btn{
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .auth-nav__btn_type_signin{
+        padding: 5px 12px;
+    }
+}

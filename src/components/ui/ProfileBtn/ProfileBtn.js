@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProfileBtn.css';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import accountPath from '../../../images/header-account.svg';
+import accountPathBlack from '../../../images/header-account.svg';
 import accountPathWhite from '../../../images/header-account-white.svg';
 
 function ProfileBtn({isBurger}){
@@ -18,7 +18,7 @@ function ProfileBtn({isBurger}){
                 </Link>
             </li>
             <li className="profile-btn__link-item">
-                <img src={ isWhite ? accountPathWhite : accountPath } alt="Логотип аккаунта" 
+                <img src={ isWhite ? accountPathWhite : accountPathBlack } alt="Логотип аккаунта" 
                 className="profile-btn__logo" 
                 onClick={()=>{history.push('/profile')}}/>
             </li>

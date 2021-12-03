@@ -13,7 +13,7 @@ import { Route, Switch } from 'react-router-dom';
 
 function App() {
 
-  const [ isLoggedIn, setIsLoggedIn ] = React.useState(true);
+  const [ isLoggedIn, setIsLoggedIn ] = React.useState(false);
   
   React.useEffect(()=>{
     document.title = "Диплом"
