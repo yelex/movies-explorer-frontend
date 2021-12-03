@@ -5,6 +5,11 @@
     display: flex;
     align-items: center;
     gap: 17px;
+    transition: all .3s;
+}
+
+.profile-btn__list:hover{
+    opacity: 0.5;
 }
 
 .profile-btn__link-item{

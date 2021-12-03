@@ -28,3 +28,17 @@
     font-size: 14px;
     line-height: 17px;
 }
+
+@media screen and (max-width: 767px) {
+    .not-found__title{
+        margin: 329px 0 0;
+        font-size: 80px;
+        line-height: 97px;
+    }
+
+    .not-found__goback-btn{
+        margin: 284px 0 0;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

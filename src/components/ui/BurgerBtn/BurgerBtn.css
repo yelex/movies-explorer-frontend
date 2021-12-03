@@ -10,3 +10,7 @@
 .burger-btn_white{
     background-image: url('../../../images/burger-ico-white.svg');
 }
+
+.burger-btn:hover{
+    opacity: 0.8;
+}
