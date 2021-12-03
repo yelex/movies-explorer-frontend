@@ -19,3 +19,11 @@
         padding: 80px 0 30px;
     }
 }
+
+@media screen and (max-width: 767px) {
+    .movies__list{
+        max-width: 300px;
+        gap: 14px;
+        padding: 40px 0 26px;
+    }
+}
