@@ -2,6 +2,7 @@ import './Promo.css';
 import React from 'react';
 import logoPath from '../../images/hero-logo.svg';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 function Promo() {
 
@@ -16,9 +17,9 @@ function Promo() {
                     Листайте ниже, чтобы узнать больше про этот проект и его создателя.
                 </p>
                 <button className="hero__btn">
-                    <Link to='#about' className="hero__link">
+                    <HashLink to="/#about" className="hero__link">
                     Узнать больше
-                    </Link>
+                    </HashLink>
                 </button>
             </div>
             <div className="hero__column">

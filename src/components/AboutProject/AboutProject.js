@@ -5,7 +5,7 @@ import Head from '../Head/Head';
 function AboutProject() {
 
     return (
-        <section className="about">
+        <section className="about" id="about">
             <div className="about__container">
                 <Head title="О проекте"/>
                 <div className="about__row about__row_type_text">

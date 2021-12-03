@@ -15,6 +15,7 @@
     margin: 0;
     max-width: 396px;
     width: 100%;
+    height: 560px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -70,7 +71,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #fff;
-    margin: 179px 0 0;
+    margin: auto 0 0;
 }
 
 .auth__caption{
@@ -78,6 +79,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #a0a0a0;
+    text-align: center;
 }
 
 .auth__link{
@@ -89,6 +91,7 @@
     .auth__container{
         align-items: center;
         width: 260px;
+        height: 594px;
     }
 
     .auth__title{
@@ -98,6 +101,12 @@
     .auth__list-fields{
         width: 100%;
         margin: 80px 0 0;
+    }
+
+    .auth__caption{
+        margin: 14px auto 0;
+        font-size: 12px;
+        line-height: 15px;
     }
 
 }
