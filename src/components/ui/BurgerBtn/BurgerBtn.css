@@ -7,3 +7,6 @@
     background-color: transparent;
 }
 
+.burger-btn_white{
+    background-image: url('../../../images/burger-ico-white.svg');
+}

@@ -16,7 +16,7 @@ function BurgerMenu(props){
             <nav className={`burger-menu__container ${props.isOpen && 'burger-menu__container_active'}`}>
                 <button type="button" className="burger-menu__close-btn"></button>
                 <Navigation isBurger/>
-                <ProfileBtn/>
+                <ProfileBtn isBurger/>
             </nav>
         </div>
     )

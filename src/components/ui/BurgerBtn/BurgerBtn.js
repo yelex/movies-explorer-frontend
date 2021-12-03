@@ -1,9 +1,9 @@
 import React from 'react';
 import './BurgerBtn.css';
 
-function BurgerBtn({handleClick}){
+function BurgerBtn({isLanding, handleClick}){
     return (
-        <button type="button" className="burger-btn" onClick={handleClick}>
+        <button type="button" className={`burger-btn ${isLanding && 'burger-btn_white'}`} onClick={handleClick}>
         </button>
     )
 }

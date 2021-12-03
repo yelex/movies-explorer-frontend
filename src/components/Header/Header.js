@@ -52,7 +52,7 @@ function Header(props) {
               <Navigation/>
             </div>
             <div className="header__column header__column_align_right">
-              <ProfileBtn/>
+              <ProfileBtn isBurger={false}/>
             </div>
           </>)}
 
@@ -64,7 +64,7 @@ function Header(props) {
         {isMobile && isLoggedIn && (
           <>
           <div className="header__column header__column_align_right">
-            <BurgerBtn handleClick={handleBurgerBtnClick}/>
+            <BurgerBtn handleClick={handleBurgerBtnClick} isLanding={props.isLanding}/>
           </div>
           <BurgerMenu isOpen={isBurgerMenuOpen} closeMenu={handleCloseBurgerMenu}/>
           </>
