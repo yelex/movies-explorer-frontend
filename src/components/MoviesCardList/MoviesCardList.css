@@ -12,3 +12,9 @@
     margin: 0 auto 107px;
 }
 
+@media screen and (max-width: 1279px) {
+    .movies__list{
+        max-width: 708px;
+        gap: 30px;
+    }
+}

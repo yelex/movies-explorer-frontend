@@ -67,3 +67,9 @@
     font-weight: 400;
     color: #a0a0a0;
 }
+
+@media screen and (max-width: 1279px) {
+    .card{
+        width: 339px;
+    }
+}
