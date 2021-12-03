@@ -8,7 +8,7 @@ function Promo() {
   return (
     <section className="hero">
         <div className="hero__container">
-            <div className="hero__column hero__column_type_left">
+            <div className="hero__column hero__column_type_info">
                 <h1 className="hero__title">
                     Учебный проект студента факультета Веб-разработки.
                 </h1>
@@ -21,7 +21,7 @@ function Promo() {
                     </Link>
                 </button>
             </div>
-            <div className="hero__column hero__column_type_right">
+            <div className="hero__column">
                 <img src={ logoPath } alt="Логотип" className="hero__logo"/>
             </div>
         </div>
