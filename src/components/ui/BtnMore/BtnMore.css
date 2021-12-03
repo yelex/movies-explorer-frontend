@@ -20,3 +20,15 @@
     font-size: 12px;
     line-height: 15px;
 }
+
+@media screen and (max-width: 1279px) {
+    .btn-more{
+        max-width: calc(100% - 60px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .btn-more{
+        max-width: calc(100% - 20px);
+    }
+}
