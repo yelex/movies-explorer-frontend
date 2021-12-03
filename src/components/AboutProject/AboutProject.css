@@ -91,3 +91,49 @@
         margin-top: 93px;
     }
 }
+
+@media screen and (max-width: 767px) {
+    .about__container{
+        margin: 70px 18px;
+    }
+
+    .about__row_type_text{
+        flex-direction: column;
+        gap: 56px;
+    }
+
+    .about__row_type_status-bar{
+        margin-top: 60px;
+    }
+
+    .about__col_type_text{
+        width: 100%;
+    }
+
+    .about__subtitle{
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .about__text{
+        margin: 16px 0 0 0;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .about__cell{
+        text-align: center;
+        font-size: 11px;
+        line-height: 13px;
+        padding: 11px 10px;
+        margin: 0;
+    }
+
+    .about__col_type_left-status{
+        width: 35%;
+    }
+
+    .about__col_type_right-status{
+        width: 65%;
+    }
+}
