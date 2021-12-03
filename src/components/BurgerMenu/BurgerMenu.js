@@ -15,7 +15,7 @@ function BurgerMenu(props){
         <div className={`burger-menu ${props.isOpen && 'burger-menu_active'}`} onClick={handleCloseMenu}>
             <nav className={`burger-menu__container ${props.isOpen && 'burger-menu__container_active'}`}>
                 <button type="button" className="burger-menu__close-btn"></button>
-                <Navigation/>
+                <Navigation isBurger/>
                 <ProfileBtn/>
             </nav>
         </div>

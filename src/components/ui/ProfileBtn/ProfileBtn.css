@@ -18,3 +18,13 @@
     text-decoration: none;
     color: #000;
 }
+
+@media screen and (max-width: 768px) {
+    .profile-btn__list{
+        margin: auto 0 92px;
+    }
+
+    .profile-btn__link-item{
+        font-size: 14px;
+    }
+}

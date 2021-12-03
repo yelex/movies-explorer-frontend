@@ -26,6 +26,12 @@ function Header(props) {
     setWidth(window.innerWidth);
   };
 
+  React.useEffect(()=>{
+    if (!isMobile){
+      handleCloseBurgerMenu();
+    }
+  }, [isMobile]);
+
   React.useEffect(() => {
     window.addEventListener('resize', updateWidth)
     return () => {
@@ -50,7 +56,7 @@ function Header(props) {
             </div>
           </>)}
 
-        {!isMobile && !isLoggedIn && (
+        {!isLoggedIn && (
         <div className="header__column header__column_align_right">
           <AuthNav/>
           </div>)}
@@ -62,7 +68,7 @@ function Header(props) {
           </div>
           <BurgerMenu isOpen={isBurgerMenuOpen} closeMenu={handleCloseBurgerMenu}/>
           </>
-          )}
+        )}
         
       </div>
     </header>
