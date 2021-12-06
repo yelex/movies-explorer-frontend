@@ -50,6 +50,11 @@
     height: 34px;
     border:0;
     cursor: pointer;
+    transition: all .3s;
+}
+
+.search-form__submit-btn:hover{
+    opacity: 0.8;
 }
 
 .search-form__short-container{
