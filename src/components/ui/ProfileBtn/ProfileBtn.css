@@ -34,6 +34,12 @@
     border-radius: 4px;
 }
 
+.profile-btn__logo_white{
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
 @media screen and (max-width: 768px) {
     .profile-btn__list{
         margin: auto 0 92px;

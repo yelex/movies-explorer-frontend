@@ -19,7 +19,7 @@ function ProfileBtn({isBurger}){
             </li>
             <li className="profile-btn__link-item">
                 <img src={ isWhite ? accountPathWhite : accountPathBlack } alt="Логотип аккаунта" 
-                className="profile-btn__logo" 
+                className={`profile-btn__logo ${isWhite && 'profile-btn__logo_white'}` }
                 onClick={()=>{history.push('/profile')}}/>
             </li>
         </ul>
