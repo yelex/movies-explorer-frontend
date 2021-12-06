@@ -28,6 +28,12 @@
     color: #fff;
 }
 
+.profile-btn__logo{
+    background-color: #f9f9f9;
+    padding: 8px 7.25px;
+    border-radius: 4px;
+}
+
 @media screen and (max-width: 768px) {
     .profile-btn__list{
         margin: auto 0 92px;
