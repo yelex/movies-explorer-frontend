@@ -1,7 +1,6 @@
 import './Promo.css';
 import React from 'react';
 import logoPath from '../../images/hero-logo.svg';
-import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 function Promo() {
