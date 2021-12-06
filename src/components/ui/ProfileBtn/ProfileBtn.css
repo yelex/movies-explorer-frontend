@@ -1,0 +1,51 @@
+.profile-btn__list{
+    margin: 0;
+    padding-left: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    transition: all .3s;
+}
+
+.profile-btn__list:hover{
+    opacity: 0.5;
+}
+
+.profile-btn__link-item{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.profile-btn__link{
+    text-decoration: none;
+    color: #000;
+}
+
+.profile-btn__link_white{
+    color: #fff;
+}
+
+.profile-btn__logo{
+    background-color: #f9f9f9;
+    padding: 8px 7.25px;
+    border-radius: 4px;
+}
+
+.profile-btn__logo_white{
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-btn__list{
+        margin: auto 0 92px;
+    }
+
+    .profile-btn__link-item{
+        font-size: 14px;
+    }
+}

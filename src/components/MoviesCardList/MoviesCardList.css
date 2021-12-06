@@ -1,0 +1,29 @@
+.movies__list{
+    list-style: none;
+    padding: 80px 0 10px;
+    margin: 0 auto;
+    max-width: 1140px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 37px 24px;
+}
+
+.movies__list_saved{
+    margin: 0 auto 107px;
+}
+
+@media screen and (max-width: 1279px) {
+    .movies__list{
+        max-width: 708px;
+        gap: 30px;
+        padding: 80px 0 30px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .movies__list{
+        max-width: 300px;
+        gap: 14px;
+        padding: 40px 0 26px;
+    }
+}

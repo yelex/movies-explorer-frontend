@@ -1,0 +1,139 @@
+.about{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.about__container{
+    max-width: 1140px;
+    width: 100%;
+    margin: 110px 70px;
+}
+
+.about__row{
+    width: 100%;
+    display: flex;
+}
+
+.about__row_type_text{
+    margin-top: 70px;
+}
+
+.about__row_type_status-bar{
+    flex-wrap: nowrap;
+    margin-top: 110px;
+}
+
+.about__col_type_text{
+    width: 50%;
+}
+
+.about__col_type_left-status{
+    width: 20%;
+}
+
+.about__col_type_right-status{
+    width: 80%;
+}
+
+.about__subtitle{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+}
+
+.about__text{
+    margin: 26px 0 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.about__cell{
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 9px 14px;
+    margin: 0;
+}
+
+.about__cell_type_backend{
+    background: #2BE080;
+    color: #000;
+}
+
+.about__cell_type_frontend{
+    background: #F2F2F2;
+    color: #000;
+}
+
+.about__cell_type_caption{
+    background: transparent;
+    font-weight: 500;
+    color: #A0A0A0;
+}
+
+@media screen and (max-width: 1279px) {
+    .about__container{
+        margin: 90px 50px;
+    }
+
+    .about__row_type_text{
+        gap: 30px;
+    }
+
+    .about__text{
+        margin: 22px 0 0 0;
+    }
+
+    .about__row_type_status-bar{
+        margin-top: 93px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .about__container{
+        margin: 70px 18px;
+    }
+
+    .about__row_type_text{
+        flex-direction: column;
+        gap: 56px;
+    }
+
+    .about__row_type_status-bar{
+        margin-top: 60px;
+    }
+
+    .about__col_type_text{
+        width: 100%;
+    }
+
+    .about__subtitle{
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .about__text{
+        margin: 16px 0 0 0;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .about__cell{
+        text-align: center;
+        font-size: 11px;
+        line-height: 13px;
+        padding: 11px 10px;
+        margin: 0;
+    }
+
+    .about__col_type_left-status{
+        width: 35%;
+    }
+
+    .about__col_type_right-status{
+        width: 65%;
+    }
+}

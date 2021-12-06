@@ -1,0 +1,44 @@
+.auth-nav__list{
+    margin: 0;
+    padding-left: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.auth-nav__btn{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.auth-nav__btn_type_signin{
+    background-color: #2BE080;
+    border-radius: 3px;
+    padding: 8px 20px;
+}
+
+.auth-nav__link{
+    text-decoration: none;
+}
+
+.auth-nav__link_color_black{
+    color: #000;
+}
+
+.auth-nav__link_color_white{
+    color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+    .auth-nav__btn{
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .auth-nav__btn_type_signin{
+        padding: 5px 12px;
+    }
+}
