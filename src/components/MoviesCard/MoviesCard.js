@@ -1,6 +1,6 @@
 import './MoviesCard.css';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { extractTime } from '../../utils/utils';
 
 function MoviesCard(props) {
@@ -8,6 +8,7 @@ function MoviesCard(props) {
   const [isLiked, setIsLiked ] = React.useState(false);
   const [isBtnVisible, setIsBtnVisible ] = React.useState(false);
   const location = useLocation();
+  const history = useHistory();
 
   function handleHover(){
     if (location.pathname==='/saved-movies'){
@@ -25,7 +26,7 @@ function MoviesCard(props) {
 
   return (
     <li className="card" onMouseOver={handleHover} onMouseOut={handleHover}>
-        <img className="card__image" alt='test' src={ props.imageUrl }/>
+        <img className="card__image" alt='test' src={ props.imageUrl } onClick={()=>{window.open(props.trailerLink)}}/>
         <div className="card__text-container">
             <h3 className="card__title">{ props.title }</h3>
             {location.pathname==='/saved-movies' ? 
