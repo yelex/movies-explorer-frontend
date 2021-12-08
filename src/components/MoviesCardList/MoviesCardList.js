@@ -2,21 +2,34 @@ import './MoviesCardList.css';
 import React from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import BtnMore from '../ui/BtnMore/BtnMore';
+import { getAllMovies } from '../../utils/MoviesApi';
 
 function MoviesCardList(props) {
+  const [ movies, setMovies ] = React.useState([]);
+
+  React.useEffect(()=>{
+    getAllMovies().then(data => {
+      console.log('im here')
+      setMovies(data);
+    })
+  }, [])
 
   return (
     <section className="movies">
+      {movies &&
+      (
       <ul className={`movies__list ${props.isSaved ? 'movies__list_saved' : ''}`}>
-        <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
-        <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
-        <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
-        <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
-        <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
-        <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
-        <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
-        <MoviesCard title="33 слова о дизайне" duration="1ч 47м"/>
+        {movies.map(movie => {
+
+        return <MoviesCard 
+          key={movie.id} 
+          title={movie.nameRU}
+          imageUrl={`https://api.nomoreparties.co${movie.image.url}`}
+          duration="1ч 47м"/>
+      })}
       </ul>
+      )
+      }
       { !props.isSaved && 
       <BtnMore/>
       }

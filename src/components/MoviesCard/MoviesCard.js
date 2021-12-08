@@ -25,7 +25,7 @@ function MoviesCard(props) {
 
   return (
     <li className="card" onMouseOver={handleHover} onMouseOut={handleHover}>
-        <img className="card__image" alt='test' src={ testPicPath }/>
+        <img className="card__image" alt='test' src={ props.imageUrl }/>
         <div className="card__text-container">
             <h3 className="card__title">{ props.title }</h3>
             {location.pathname==='/saved-movies' ? 
