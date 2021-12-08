@@ -1,6 +1,6 @@
 import './MoviesCard.css';
 import React from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { extractTime } from '../../utils/utils';
 
 function MoviesCard(props) {
@@ -8,7 +8,6 @@ function MoviesCard(props) {
   const [isLiked, setIsLiked ] = React.useState(false);
   const [isBtnVisible, setIsBtnVisible ] = React.useState(false);
   const location = useLocation();
-  const history = useHistory();
 
   function handleHover(){
     if (location.pathname==='/saved-movies'){
