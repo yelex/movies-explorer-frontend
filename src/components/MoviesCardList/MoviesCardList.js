@@ -25,7 +25,7 @@ function MoviesCardList(props) {
           key={movie.id} 
           title={movie.nameRU}
           imageUrl={`https://api.nomoreparties.co${movie.image.url}`}
-          duration="1ч 47м"/>
+          duration={movie.duration}/>
       })}
       </ul>
       )

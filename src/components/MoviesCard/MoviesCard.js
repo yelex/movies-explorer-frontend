@@ -1,7 +1,7 @@
 import './MoviesCard.css';
 import React from 'react';
-import testPicPath from '../../images/test-card-pic.svg';
 import { useLocation } from 'react-router-dom';
+import { extractTime } from '../../utils/utils';
 
 function MoviesCard(props) {
 
@@ -33,7 +33,7 @@ function MoviesCard(props) {
             : 
             <button type="button" className={ `card__btn ${isLiked ? 'card__btn_liked' : ''}` } onClick={ handleLikeClick }></button>}
         </div>
-        <p className="card__text-duration">{ props.duration }</p>
+        <p className="card__text-duration">{ extractTime(props.duration) }</p>
     </li>
   );
 }
