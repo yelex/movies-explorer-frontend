@@ -4,28 +4,35 @@ import React from 'react';
 function SearchForm(props) {
 
   const [isShortFilm, setIsShortFilm ] = React.useState(true);
+  const [keyword, setKeyword ] = React.useState('');
+
+  function handleChange(evt){
+    setKeyword(evt.target.value);
+  }
+
+  function handleSubmit(evt){
+    evt.preventDefault();
+    props.onSubmit(keyword);
+  }
 
   function handleTumbler(){
     setIsShortFilm(!isShortFilm);
-  }
-
-  function handleInvalidInput(evt){
-    evt.target.setCustomValidity('Нужно ввести ключевое слово');
-    evt.target.focus();
   }
 
   return (
     <section className="search-form">
       <div className="search-form__container">
         <form name="search-form" action="#" 
-              className="search-form__form" 
+              className="search-form__form"
+              onSubmit={handleSubmit}
               >
           <div className="search-form__input-container">
-            <input value={ props.film } 
+            <input value={ keyword } 
                           className="search-form__input" 
                           id="search-form" name="search-form" type="text" 
                           placeholder="Фильм" minLength="2" 
-                          maxLength="100" onInvalid={handleInvalidInput}
+                          maxLength="100"
+                          onChange={handleChange}
                           required/>
             <button type="submit" className="search-form__submit-btn">
             </button>
