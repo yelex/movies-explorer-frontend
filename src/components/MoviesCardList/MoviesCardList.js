@@ -9,7 +9,6 @@ function MoviesCardList(props) {
   const [ movies, setMovies ] = React.useState([]);
 
   React.useEffect(()=>{
-    console.log(movies)
     getAllMovies().then(data => {
       console.log('im here')
       setMovies(data);
