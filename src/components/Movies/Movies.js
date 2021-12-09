@@ -12,23 +12,20 @@ function Movies() {
   const [ isEmptyResults, setIsEmptyResults ] = React.useState(false)
 
   React.useEffect(()=>{
-
     if (localStorage.getItem('movies')){
-      setMovies(localStorage.getItem('movies'))
+      setMovies(JSON.parse(localStorage.getItem('movies')))
     }
-
   }, [])
 
   function handleSubmit(keyword){
 
-    console.log('im here');
     setIsPreloaderVisible(true);
     getAllMovies().then(data => {
-      console.log(data);
       setIsPreloaderVisible(false);
       const filteredData = data.filter(val => val['nameRU'].includes(keyword));
       if (filteredData.length!==0 ){
         setIsEmptyResults(false);
+        localStorage.setItem('movies', JSON.stringify(filteredData));
         setMovies(filteredData)
       } else {
         setMovies([]);
