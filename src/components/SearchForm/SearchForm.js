@@ -9,6 +9,11 @@ function SearchForm(props) {
     setIsShortFilm(!isShortFilm);
   }
 
+  function handleInvalidInput(evt){
+    evt.target.setCustomValidity('Нужно ввести ключевое слово');
+    evt.target.focus();
+  }
+
   return (
     <section className="search-form">
       <div className="search-form__container">
@@ -20,7 +25,8 @@ function SearchForm(props) {
                           className="search-form__input" 
                           id="search-form" name="search-form" type="text" 
                           placeholder="Фильм" minLength="2" 
-                          maxLength="100" required/>
+                          maxLength="100" onInvalid={handleInvalidInput}
+                          required/>
             <button type="submit" className="search-form__submit-btn">
             </button>
           </div>

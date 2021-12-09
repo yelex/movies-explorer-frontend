@@ -2,12 +2,14 @@ import './MoviesCardList.css';
 import React from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import BtnMore from '../ui/BtnMore/BtnMore';
+import Preloader from '../Preloader/Preloader';
 import { getAllMovies } from '../../utils/MoviesApi';
 
 function MoviesCardList(props) {
   const [ movies, setMovies ] = React.useState([]);
 
   React.useEffect(()=>{
+    console.log(movies)
     getAllMovies().then(data => {
       console.log('im here')
       setMovies(data);
@@ -16,9 +18,9 @@ function MoviesCardList(props) {
 
   return (
     <section className="movies">
-      {movies &&
-      (
-      <ul className={`movies__list ${props.isSaved ? 'movies__list_saved' : ''}`}>
+      {movies.length!==0 
+      ?
+      (<ul className={`movies__list ${props.isSaved ? 'movies__list_saved' : ''}`}>
         {movies.map(movie => {
 
         return <MoviesCard 
@@ -28,9 +30,9 @@ function MoviesCardList(props) {
           duration={movie.duration}
           trailerLink={movie.trailerLink}/>
       })}
-      </ul>
-      )
-      }
+      </ul>) 
+      : <Preloader/>}
+      
       { !props.isSaved && 
       <BtnMore/>
       }
