@@ -19,7 +19,7 @@ function MoviesCardList(props) {
     <section className="movies">
       {movies.length!==0 
       && 
-      (<ul className={`movies__list ${props.isSaved ? 'movies__list_saved' : ''}`}>
+      (<><ul className={`movies__list ${props.isSaved ? 'movies__list_saved' : ''}`}>
         {movies.map(movie => {
 
         return <MoviesCard 
@@ -29,12 +29,14 @@ function MoviesCardList(props) {
           duration={movie.duration}
           trailerLink={movie.trailerLink}/>
       })}
-      </ul>)}
-      { isPreloaderVisible && <Preloader/>}
-      
+      </ul>
       { !props.isSaved && 
       <BtnMore/>
       }
+      </>)}
+      { isPreloaderVisible && <Preloader/>}
+      
+      
     </section>
   );
 }
