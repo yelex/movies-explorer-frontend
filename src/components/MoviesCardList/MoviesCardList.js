@@ -7,17 +7,18 @@ import { getAllMovies } from '../../utils/MoviesApi';
 
 function MoviesCardList(props) {
   const [ movies, setMovies ] = React.useState([]);
+  const [ isPreloaderVisible, setIsPreloaderVisible ] = React.useState(false)
 
   React.useEffect(()=>{
-    getAllMovies().then(data => {
-      setMovies(data);
-    })
+    // getAllMovies().then(data => {
+    //   setMovies(data);
+    // }).catch(err => console.log(err))
   }, [])
 
   return (
     <section className="movies">
       {movies.length!==0 
-      ?
+      && 
       (<ul className={`movies__list ${props.isSaved ? 'movies__list_saved' : ''}`}>
         {movies.map(movie => {
 
@@ -28,8 +29,8 @@ function MoviesCardList(props) {
           duration={movie.duration}
           trailerLink={movie.trailerLink}/>
       })}
-      </ul>) 
-      : <Preloader/>}
+      </ul>)}
+      { isPreloaderVisible && <Preloader/>}
       
       { !props.isSaved && 
       <BtnMore/>
