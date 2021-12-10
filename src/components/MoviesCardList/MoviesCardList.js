@@ -22,8 +22,8 @@ function MoviesCardList(props) {
           trailerLink={movie.trailerLink}/>
       })}
       </ul>
-      { !props.isSaved && 
-      <BtnMore/>
+      { !props.isSaved && props.isMoreBtnVisible &&
+      <BtnMore onClick={props.onMore}/>
       }
       </>)}
       { props.isPreloaderVisible && <Preloader/>}

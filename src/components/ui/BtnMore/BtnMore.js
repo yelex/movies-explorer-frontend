@@ -1,9 +1,9 @@
 import React from 'react';
 import './BtnMore.css';
 
-function BtnMore(){
+function BtnMore(props){
     return (
-        <button type="button" className="btn-more">
+        <button type="button" className="btn-more" onClick={props.onClick}>
             <p className="btn-more__text">
             Ещё
             </p>
