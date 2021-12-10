@@ -23,6 +23,7 @@ export const getFirstExtraRow = (width)=>{
   return {first: 12, extra: 3}
 }
 
-export const getMatchedFilms = (data, keyword)=>{
-  return data.filter(film => film['nameRU'].includes(keyword));
+export const getMatchedFilms = (data, keyword, isShortMovies)=>{
+  const movies = data.filter(movie => movie['nameRU'].includes(keyword));
+  return (isShortMovies ? movies.filter(movie => movie['duration']<=40) : movies)
 }

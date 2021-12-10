@@ -14,6 +14,7 @@ function Movies() {
   const [ isPreloaderVisible, setIsPreloaderVisible ] = React.useState(false);
   const [ isEmptyResults, setIsEmptyResults ] = React.useState(false);
   const [ isMoreBtnVisible, setIsMoreBtnVisible ] = React.useState(false);
+  const [ isShortMovies, setIsShortMovies ] = React.useState(false);
   const [ firstCards, setFirstCards ] = React.useState(0);
   const [ extraCards, setExtraCards ] = React.useState(0);
 
@@ -63,13 +64,17 @@ function Movies() {
     setRenderedMovies(movies.slice(0, newCount));
   }
 
+  function handleShortMovies(){
+    setIsShortMovies(!isShortMovies);
+  }
+
   function handleSubmit(keyword){
 
     setIsPreloaderVisible(true);
     clearMovies();
     getAllMovies().then(data => {
       setIsPreloaderVisible(false);
-      const filteredData = getMatchedFilms(data, keyword);
+      const filteredData = getMatchedFilms(data, keyword, isShortMovies);
       if (filteredData.length!==0){
         localStorage.setItem('movies', JSON.stringify(filteredData));
         setIsEmptyResults(false);
@@ -83,7 +88,10 @@ function Movies() {
     <>
     <Header isLanding={false}/>
 
-    <SearchForm onSubmit={handleSubmit}/>
+    <SearchForm onSubmit={handleSubmit} 
+    isShortMovies={ isShortMovies }
+    onShortMovies={handleShortMovies}/>
+
     <MoviesCardList isSaved={false} 
                     isEmptyResults={isEmptyResults} 
                     movies={renderedMovies} 

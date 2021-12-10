@@ -3,8 +3,13 @@ import React from 'react';
 
 function SearchForm(props) {
 
-  const [isShortFilm, setIsShortFilm ] = React.useState(true);
   const [keyword, setKeyword ] = React.useState('');
+  const [ isShortMovies, setIsShortMovies ] = React.useState(props.isShortMovies);
+
+  function handleTumbler(){
+    setIsShortMovies(!isShortMovies)
+    props.onShortMovies();
+  }
 
   function handleChange(evt){
     setKeyword(evt.target.value);
@@ -13,10 +18,6 @@ function SearchForm(props) {
   function handleSubmit(evt){
     evt.preventDefault();
     props.onSubmit(keyword);
-  }
-
-  function handleTumbler(){
-    setIsShortFilm(!isShortFilm);
   }
 
   return (
@@ -39,8 +40,11 @@ function SearchForm(props) {
           </div>
         </form>
         <div className="search-form__short-container">
-          <div className={`search-form__btn-container ${isShortFilm? '' : 'search-form__btn-container_deactivated'}`} onClick={handleTumbler}>
-            <button type="button" className={`search-form__tumb-btn ${isShortFilm? '' : 'search-form__tumb-btn_deactivated'}`}></button>
+          <div 
+          className={`search-form__btn-container ${isShortMovies? '' : 'search-form__btn-container_deactivated'}`} 
+          onClick={handleTumbler}>
+            <button type="button" 
+            className={`search-form__tumb-btn ${isShortMovies? '' : 'search-form__tumb-btn_deactivated'}`}></button>
           </div>
           <p className="search-form__label">Короткометражки</p>
         </div>
