@@ -4,12 +4,6 @@ import React from 'react';
 function SearchForm(props) {
 
   const [keyword, setKeyword ] = React.useState('');
-  const [ isShortMovies, setIsShortMovies ] = React.useState(props.isShortMovies);
-
-  function handleTumbler(){
-    setIsShortMovies(!isShortMovies)
-    props.onShortMovies();
-  }
 
   function handleChange(evt){
     setKeyword(evt.target.value);
@@ -41,10 +35,10 @@ function SearchForm(props) {
         </form>
         <div className="search-form__short-container">
           <div 
-          className={`search-form__btn-container ${isShortMovies? '' : 'search-form__btn-container_deactivated'}`} 
-          onClick={handleTumbler}>
+          className={`search-form__btn-container ${props.isShortMovies ? '' : 'search-form__btn-container_deactivated'}`} 
+          onClick={props.onShortMovies}>
             <button type="button" 
-            className={`search-form__tumb-btn ${isShortMovies? '' : 'search-form__tumb-btn_deactivated'}`}></button>
+            className={`search-form__tumb-btn ${props.isShortMovies ? '' : 'search-form__tumb-btn_deactivated'}`}></button>
           </div>
           <p className="search-form__label">Короткометражки</p>
         </div>

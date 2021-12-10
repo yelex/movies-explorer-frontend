@@ -20,7 +20,6 @@ function Movies() {
 
   React.useEffect(()=>{
     if (localStorage.getItem('movies')){
-      console.log('im here')
       setMovies(JSON.parse(localStorage.getItem('movies')))
     }
     setFirstExtraRow();
@@ -45,7 +44,7 @@ function Movies() {
   }
 
   React.useEffect(()=>{
-    if (renderedMovies.length<movies.length){
+    if (renderedMovies.length < movies.length){
       setIsMoreBtnVisible(true)
     } else {
       setIsMoreBtnVisible(false)
