@@ -2,13 +2,14 @@ import React from 'react';
 import './AuthForm.css';
 import logoPath from '../../images/header-logo.svg';
 import { useHistory } from 'react-router-dom';
+import { useFormWithValidation } from '../../hooks/FormValidation';
 
 export function AuthForm(props) {
     const history = useHistory();
     
     return (
         <section className="auth">
-            <form name={`${props.formName }Form`} action="#" 
+            <form name={`${props.formName}Form`} action="#" 
             className="auth__container"
             onSubmit={ props.onSubmit }
             >
