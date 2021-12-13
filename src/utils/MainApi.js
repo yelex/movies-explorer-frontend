@@ -1,6 +1,6 @@
 import { getResponseData } from './utils';
 
-export const BASE_URL = 'https://api.yellex.nomoredomains.work';
+export const BASE_URL = 'http://localhost:3001';
 
 export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {

@@ -42,6 +42,14 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 90px;
+}
+
+.auth__error-text{
+    color: #FF3055;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
 }
 
 .auth__label{
@@ -60,6 +68,11 @@
     border: none;
 }
 
+.auth__input_error{
+    border: 1px solid #fF3055;
+    color: #fF3055;
+}
+
 .auth__submit-btn{
     width: 100%;
     background-color: #3456F3;
@@ -72,6 +85,11 @@
     line-height: 17px;
     color: #fff;
     margin: auto 0 0;
+}
+
+.auth__submit-btn_disabled{
+    background-color: #f8f8f8;
+    color: #c2c2c2;
 }
 
 .auth__caption{
