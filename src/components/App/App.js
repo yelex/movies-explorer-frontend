@@ -43,11 +43,11 @@ function App() {
   }
 
   function handleRegister(name, email, password){
+    console.log(name, email, password);
     register(name, email, password).then((res) => {
         console.log(res);
         if(res){
-          history.push('/sign-in');
-        } else {
+          history.push('/signin');
         }
       })
       .catch(err => {

@@ -20,7 +20,7 @@ export function AuthForm(props) {
                 <h1 className="auth__title">{ props.title }</h1>
                 <ul className="auth__list-fields">
                     { props.formName==="register" && 
-                    <li className="auth__list-item">
+                    <li className="auth__list-item" key="register">
                         <label htmlFor="name" className="auth__label">Имя</label>
                         <input onChange={ handleChange } 
                         value={ values.name || ''}
@@ -33,7 +33,7 @@ export function AuthForm(props) {
                         {errors.name && <span className="auth__error-text">{errors.name}</span>}
                     </li>
                     }
-                    <li className="auth__list-item">
+                    <li className="auth__list-item" key="email">
                         <label htmlFor="email" className="auth__label">E-mail</label>
                         <input onChange={ handleChange } 
                         value={ values.email || '' } 
@@ -45,7 +45,7 @@ export function AuthForm(props) {
                         required/>
                         {errors.email && <span className="auth__error-text">{errors.email}</span>}
                     </li>
-                    <li className="auth__list-item">
+                    <li className="auth__list-item" key="password">
                         <label htmlFor="password" className="auth__label">Пароль</label>
                         <input onChange={ handleChange } 
                         value={ values.password || '' } 

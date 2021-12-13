@@ -2,13 +2,13 @@ import { getResponseData } from './utils';
 
 export const BASE_URL = 'http://localhost:3001';
 
-export const register = (email, password, name) => {
+export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({email, password, name}),
+    body: JSON.stringify({name, email, password}),
     credentials: 'include',
   })
   .then((res) => {
