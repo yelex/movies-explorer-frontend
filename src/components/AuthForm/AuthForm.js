@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 export function AuthForm(props) {
     const history = useHistory();
-    const { values, handleChange, errors, isValid } = props.formData;
+    const { values, errors, isValid, handleChange } = props.formData;
 
     return (
         <section className="auth">
@@ -22,7 +22,7 @@ export function AuthForm(props) {
                     { props.formName==="register" && 
                     <li className="auth__list-item" key="register">
                         <label htmlFor="name" className="auth__label">Имя</label>
-                        <input onChange={ handleChange } 
+                        <input onChange={ handleChange }
                         value={ values.name || ''}
                         className={`auth__input ${errors.name && 'auth__input_error'}`}
                         type="text" 
@@ -35,7 +35,7 @@ export function AuthForm(props) {
                     }
                     <li className="auth__list-item" key="email">
                         <label htmlFor="email" className="auth__label">E-mail</label>
-                        <input onChange={ handleChange } 
+                        <input onChange={ handleChange }
                         value={ values.email || '' } 
                         className={`auth__input ${errors.email && 'auth__input_error'}`}
                         type="email"
@@ -58,8 +58,12 @@ export function AuthForm(props) {
                         {errors.password && <span className="auth__error-text">{errors.password}</span>}
                     </li>
                 </ul>
-
-                <button type="submit" className={`auth__submit-btn ${!isValid && 'auth__submit-btn_disabled'}`} disabled={!isValid}>{ props.submitBtnText }</button>
+                <div className="auth__btn-container">
+                    <p className="auth__server-error">{props.errorServerText}</p>
+                    <button type="submit" 
+                    className={`auth__submit-btn ${!isValid && 'auth__submit-btn_disabled'}`} 
+                    disabled={!isValid}>{ props.submitBtnText }</button>
+                </div>
                 { props.children }
             </form>
         </section>

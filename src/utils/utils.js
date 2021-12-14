@@ -4,7 +4,7 @@ export const getResponseData = (res) => {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return res.json().then(message => {return Promise.reject(message)})
 }
 
 export const extractTime = (numberMins) => {

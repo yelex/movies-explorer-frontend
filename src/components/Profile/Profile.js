@@ -33,7 +33,9 @@ function Profile(props) {
             <button type="button" className="profile__btn">Редактировать</button>
           </li>
           <li>
-            <button type="button" className="profile__btn profile__btn_color_red">Выйти из аккаунта</button>
+            <button type="button" 
+            className="profile__btn profile__btn_color_red"
+            onClick={ props.onSignOut }>Выйти из аккаунта</button>
           </li>
         </ul>
       </form>

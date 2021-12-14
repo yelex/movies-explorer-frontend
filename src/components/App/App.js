@@ -7,9 +7,10 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
+import { ProtectedRoute } from '../ProptectedRoute/ProtectedRoute';
 import { IsLoggedInContext } from '../../contexts/IsLoggedInContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { authorize, register, checkToken } from '../../utils/MainApi';
+import { authorize, register, checkToken, signOut } from '../../utils/MainApi';
 import { useHistory, useLocation } from 'react-router';
 
 import { Route, Switch } from 'react-router-dom';
@@ -17,8 +18,9 @@ import { Route, Switch } from 'react-router-dom';
 function App() {
 
   const [ currentUser, setCurrentUser ] = React.useState({});
-  const [ isLoggedIn, setIsLoggedIn ] = React.useState(true);
+  const [ isLoggedIn, setIsLoggedIn ] = React.useState(false);
   const [ userEmail, setUserEmail ] = React.useState('');
+  const [ serverErrorText, setServerErrorText ] = React.useState('');
   const history = useHistory();
   const location = useLocation();
   
@@ -30,30 +32,50 @@ function App() {
     handleTokenCheck();
   }, [])
 
+  function resetServerError(){
+    setServerErrorText('');
+  }
+
+  function handleErrorMessage(err){
+    switch (err.message) {
+      case "Validation failed":
+        setServerErrorText("Вы ввели некорректный e-mail или пароль");
+        break;
+      case "Failed to fetch":
+        setServerErrorText("Сервер недоступен");
+        break;
+      default:
+        setServerErrorText(err.message);
+        break;
+    }
+  }
+
   function handleLogin(email, password){
     authorize(email, password)
       .then(() => {
         setUserEmail(email);
         setIsLoggedIn(true);
         history.push('/movies');
+        setServerErrorText('')
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
+        handleErrorMessage(err);
       })
   }
 
   function handleRegister(name, email, password){
     console.log(name, email, password);
     register(name, email, password).then((res) => {
-        console.log(res);
         if(res){
           history.push('/signin');
         }
+        setServerErrorText('')
       })
       .catch(err => {
-        console.log(err);
-      }
-        )
+        console.log(err)
+        handleErrorMessage(err);
+      })
   }
 
   function handleTokenCheck(){
@@ -68,25 +90,38 @@ function App() {
     })
   }
 
+  function handleSignOut(){
+    signOut().then(()=>{
+      setIsLoggedIn(false);
+      history.push('/signin');
+    }).catch(err => console.log(err))
+  }
+
   return (
     <CurrentUserContext.Provider value={ currentUser }>
       <IsLoggedInContext.Provider value={ isLoggedIn }>
-          <div className="page">
+        <div className="page">
             <Switch>
-              <Route path="/movies">
+              <ProtectedRoute path="/movies" isLoggedIn={ isLoggedIn }>
                 <Movies />
-              </Route>
-              <Route path="/saved-movies">
+              </ProtectedRoute>
+              <ProtectedRoute path="/saved-movies" isLoggedIn={ isLoggedIn }>
                 <SavedMovies />
-              </Route>
-              <Route path="/profile">
+              </ProtectedRoute>
+              <ProtectedRoute path="/profile" 
+              isLoggedIn={ isLoggedIn }
+              onSignOut={ handleSignOut }>
                 <Profile />
-              </Route>
+              </ProtectedRoute>
               <Route path="/signin">
-                <Login onLogin={ handleLogin }/>
+                <Login onLogin={ handleLogin } 
+                errorServerText={serverErrorText}
+                resetServerError={resetServerError}/>
               </Route>
               <Route path="/signup">
-                <Register onRegister={ handleRegister }/>
+                <Register onRegister={ handleRegister } 
+                errorServerText={serverErrorText}
+                resetServerError={resetServerError}/>
               </Route>
               <Route exact path="/">
                 <Main />
