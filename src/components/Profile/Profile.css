@@ -50,16 +50,60 @@
     border: none;
     text-decoration: none;
     text-align: right;
+    width: 70%;
 }
 
+.profile__result{
+    margin: 184px 0 10px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    height: 12px;
+    text-align: center;
+    width: 100%;
+}
+
+.profile__result_color_red{
+    color: #FF3055;
+}
+
+.profile__result_color_green{
+    color: green;
+}
+
+
 .profile__buttons{
-    margin: 204px 0 0;
     list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    width: 100%;
+}
+
+.profile__btn-item{
+    width: 100%;
+    text-align: center;
+}
+
+.profile__save-btn{
+    width: 100%;
+    background-color: #3456F3;
+    border: none;
+    border-radius: 3px;
+    padding: 13px 15px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+    color: #fff;
+}
+
+.profile__save-btn_disabled{
+    background-color: #f8f8f8;
+    color: #c2c2c2;
 }
 
 .profile__btn{

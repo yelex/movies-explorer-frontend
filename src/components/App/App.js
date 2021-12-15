@@ -7,11 +7,12 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
+import Preloader from '../Preloader/Preloader';
 import { ProtectedRoute } from '../ProptectedRoute/ProtectedRoute';
 import { IsLoggedInContext } from '../../contexts/IsLoggedInContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { authorize, register, checkToken, signOut } from '../../utils/MainApi';
-import { useHistory, useLocation } from 'react-router';
+import { authorize, register, getInfoAboutMe, signOut, updateInfo } from '../../utils/MainApi';
+import { useHistory } from 'react-router';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -19,10 +20,18 @@ function App() {
 
   const [ currentUser, setCurrentUser ] = React.useState({});
   const [ isLoggedIn, setIsLoggedIn ] = React.useState(false);
-  const [ userEmail, setUserEmail ] = React.useState('');
+  const [ isLoggedInChecked, setIsLoggedInChecked ] = React.useState(false);
+  const [ isSuccessUpdate, setIsSuccessUpdate ] = React.useState(false);
   const [ serverErrorText, setServerErrorText ] = React.useState('');
   const history = useHistory();
-  const location = useLocation();
+
+  React.useEffect(()=>{
+    console.log(`isSuccess: ${isSuccessUpdate}`)
+  },[isSuccessUpdate])
+
+  React.useEffect(()=>{
+    console.log(isLoggedIn)
+  }, [isLoggedIn])
   
   React.useEffect(() => {
     document.title = "Диплом"
@@ -30,10 +39,14 @@ function App() {
 
   React.useEffect(() => {
     handleTokenCheck();
-  }, [])
+  },[])
 
   function resetServerError(){
     setServerErrorText('');
+  }
+
+  function resetSuccessUpdate(){
+    setIsSuccessUpdate(false);
   }
 
   function handleErrorMessage(err){
@@ -50,13 +63,28 @@ function App() {
     }
   }
 
+  function handleUpdateUser(name, email){
+    updateInfo(name, email).then(()=>{
+      console.log('profile changed');
+      setCurrentUser({...currentUser, name, email});
+      setIsSuccessUpdate(true);
+      console.log('im in end')
+    }).catch(err=>{
+      console.log(err);
+      handleErrorMessage(err);
+    })
+  }
+
   function handleLogin(email, password){
     authorize(email, password)
       .then(() => {
-        setUserEmail(email);
         setIsLoggedIn(true);
         history.push('/movies');
         setServerErrorText('')
+        getInfoAboutMe().then(
+          ({email, name, _id}) => {
+            setCurrentUser({email, name, _id})}
+        )
       })
       .catch(err => {
         console.log(err);
@@ -79,15 +107,15 @@ function App() {
   }
 
   function handleTokenCheck(){
-    checkToken()
-    .then((data) => {
-      setUserEmail(data.email);
+    getInfoAboutMe()
+    .then(({email, name, _id}) => {
       setIsLoggedIn(true);
+      setCurrentUser({email, name, _id});
     })
-    .catch(err => console.log(err)) // сюда придет 401 если пользователь неавторизован
+    .catch(err => console.log(err))
     .finally(()=>{
-      history.push(location.pathname);
-    })
+      setIsLoggedInChecked(true)
+    }) // сюда придет 401 если пользователь неавторизован
   }
 
   function handleSignOut(){
@@ -101,6 +129,7 @@ function App() {
     <CurrentUserContext.Provider value={ currentUser }>
       <IsLoggedInContext.Provider value={ isLoggedIn }>
         <div className="page">
+        {!isLoggedInChecked ? <Preloader/> :
             <Switch>
               <ProtectedRoute path="/movies" isLoggedIn={ isLoggedIn }>
                 <Movies />
@@ -109,25 +138,30 @@ function App() {
                 <SavedMovies />
               </ProtectedRoute>
               <ProtectedRoute path="/profile" 
-              isLoggedIn={ isLoggedIn }
-              onSignOut={ handleSignOut }>
-                <Profile />
+              isLoggedIn={ isLoggedIn }>
+                <Profile onChange={ handleUpdateUser }
+                onSignOut={ handleSignOut }
+                isSuccessUpdate={ isSuccessUpdate }
+                resetSuccessUpdate={ resetSuccessUpdate }
+                errorServerText={ serverErrorText }
+                resetServerError={ resetServerError }/>
               </ProtectedRoute>
               <Route path="/signin">
                 <Login onLogin={ handleLogin } 
-                errorServerText={serverErrorText}
-                resetServerError={resetServerError}/>
+                errorServerText={ serverErrorText }
+                resetServerError={ resetServerError }/>
               </Route>
               <Route path="/signup">
                 <Register onRegister={ handleRegister } 
-                errorServerText={serverErrorText}
-                resetServerError={resetServerError}/>
+                errorServerText={ serverErrorText }
+                resetServerError={ resetServerError }/>
               </Route>
               <Route exact path="/">
                 <Main />
               </Route>
               <Route component={ NotFound }/>
             </Switch>
+            }
         </div>
       </IsLoggedInContext.Provider>
     </CurrentUserContext.Provider>

@@ -31,7 +31,7 @@ export const authorize = (email, password) => {
     return getResponseData(res)})
 };
 
-export const checkToken = () => {
+export const getInfoAboutMe = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
@@ -40,6 +40,7 @@ export const checkToken = () => {
     credentials: 'include',
   })
   .then((res) => {
+    console.log('i got user info')
     return getResponseData(res); 
     // сначала на бэке отработает 
     // мидлвара auth, которая вернет 401 если 
@@ -60,9 +61,18 @@ export const signOut = () => {
     credentials: 'include',
   })
   .then((res) => {
-    return getResponseData(res);
-  })
-  .then((res) => {
     return res;
   })
+};
+
+export const updateInfo = (name, email) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({name, email}),
+    credentials: 'include'
+  }).then(res => {
+    return getResponseData(res)})
 };
