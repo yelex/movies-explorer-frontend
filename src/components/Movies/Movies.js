@@ -4,6 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import { getSavedMovies } from '../../utils/MainApi';
 import { getAllMovies } from '../../utils/MoviesApi';
 import { getFirstExtraRow, getMatchedFilms } from '../../utils/utils';
 
@@ -17,6 +18,15 @@ function Movies() {
   const [ isShortMovies, setIsShortMovies ] = React.useState(false);
   const [ firstCards, setFirstCards ] = React.useState(0);
   const [ extraCards, setExtraCards ] = React.useState(0);
+  const [ savedMoviesIds, setSavedMoviesIds ] = React.useState([])
+
+  React.useEffect(()=>{
+    getSavedMovies().then(savedMovies => {
+      setSavedMoviesIds(savedMovies.map(movie => {
+        return movie.movieId
+      }))
+    })
+  }, [movies])
 
   React.useEffect(()=>{
     if (localStorage.getItem('movies')){
@@ -93,7 +103,8 @@ function Movies() {
 
     <MoviesCardList isSaved={false} 
                     isEmptyResults={isEmptyResults} 
-                    movies={renderedMovies} 
+                    movies={renderedMovies}
+                    savedMoviesIds={savedMoviesIds}
                     isPreloaderVisible={isPreloaderVisible}
                     isMoreBtnVisible={isMoreBtnVisible}
                     onMore={handleMore}/>

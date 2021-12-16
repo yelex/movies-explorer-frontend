@@ -40,14 +40,7 @@ export const getInfoAboutMe = () => {
     credentials: 'include',
   })
   .then((res) => {
-    console.log('i got user info')
     return getResponseData(res); 
-    // сначала на бэке отработает 
-    // мидлвара auth, которая вернет 401 если 
-    // пользователь неавторизован, потом отработает 
-    // метод getInfoAboutMe, который вернет {
-    //   name, _id, email
-    // }
   })
   .then(data => data)
 }
@@ -76,3 +69,52 @@ export const updateInfo = (name, email) => {
   }).then(res => {
     return getResponseData(res)})
 };
+
+export const addMovieToSaved = ({country, director, duration, year,
+  description, image, trailer, nameRU, nameEN, thumbnail, movieId})=>{
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailer,
+      nameRU,
+      nameEN,
+      thumbnail,
+      movieId}),
+    credentials: 'include'
+  }).then(res => {
+    return getResponseData(res)})
+  .then(data => data)
+}
+
+export const removeMovieFromSaved = (movieId)=>{
+  console.log(movieId)
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include'
+  }).then(res => {
+    return getResponseData(res)})
+  .then(data => data)
+}
+
+export const getSavedMovies = ()=>{
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include'
+  }).then(res => {
+    return getResponseData(res)})
+  .then(data => data)
+}

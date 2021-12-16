@@ -8,24 +8,27 @@ function MoviesCardList(props) {
 
   return (
     <section className="movies">
-      {props.isEmptyResults && <h1>Нет результатов</h1>}
+      
+      <ul className={`movies__list ${props.isSaved ? 'movies__list_saved' : ''}`}>
       {props.movies.length!==0 
-      && 
-      (<><ul className={`movies__list ${props.isSaved ? 'movies__list_saved' : ''}`}>
-        {props.movies.map(movie => {
+      && props.movies.map(movie => {
 
-        return <MoviesCard 
-          key={movie.id} 
-          title={movie.nameRU}
-          imageUrl={`https://api.nomoreparties.co${movie.image.url}`}
-          duration={movie.duration}
-          trailerLink={movie.trailerLink}/>
-      })}
+        return (!props.isSaved ? <MoviesCard
+          key={movie.id}
+          movie={movie}
+          isLiked={props.savedMoviesIds.includes(movie.id)}
+          isSaved={false}/> 
+          : <MoviesCard
+          key={movie.id}
+          movie={movie}
+          onRemove={props.onRemove}
+          isSaved={true}/>)})}
+      {props.isEmptyResults && 
+      <h1 className="movies__empty-results">Нет результатов</h1>}
       </ul>
       { !props.isSaved && props.isMoreBtnVisible &&
       <BtnMore onClick={props.onMore}/>
       }
-      </>)}
       { props.isPreloaderVisible && <Preloader/>}
       
       

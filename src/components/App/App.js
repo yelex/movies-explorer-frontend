@@ -11,7 +11,8 @@ import Preloader from '../Preloader/Preloader';
 import { ProtectedRoute } from '../ProptectedRoute/ProtectedRoute';
 import { IsLoggedInContext } from '../../contexts/IsLoggedInContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { authorize, register, getInfoAboutMe, signOut, updateInfo } from '../../utils/MainApi';
+import { authorize, register, getInfoAboutMe, signOut, 
+  updateInfo } from '../../utils/MainApi';
 import { useHistory } from 'react-router';
 
 import { Route, Switch } from 'react-router-dom';
@@ -24,14 +25,6 @@ function App() {
   const [ isSuccessUpdate, setIsSuccessUpdate ] = React.useState(false);
   const [ serverErrorText, setServerErrorText ] = React.useState('');
   const history = useHistory();
-
-  React.useEffect(()=>{
-    console.log(`isSuccess: ${isSuccessUpdate}`)
-  },[isSuccessUpdate])
-
-  React.useEffect(()=>{
-    console.log(isLoggedIn)
-  }, [isLoggedIn])
   
   React.useEffect(() => {
     document.title = "Диплом"
@@ -65,10 +58,8 @@ function App() {
 
   function handleUpdateUser(name, email){
     updateInfo(name, email).then(()=>{
-      console.log('profile changed');
       setCurrentUser({...currentUser, name, email});
       setIsSuccessUpdate(true);
-      console.log('im in end')
     }).catch(err=>{
       console.log(err);
       handleErrorMessage(err);
@@ -115,14 +106,17 @@ function App() {
     .catch(err => console.log(err))
     .finally(()=>{
       setIsLoggedInChecked(true)
-    }) // сюда придет 401 если пользователь неавторизован
+    })
   }
 
   function handleSignOut(){
     signOut().then(()=>{
       setIsLoggedIn(false);
       history.push('/signin');
-    }).catch(err => console.log(err))
+    }).catch(err => console.log(err));
+    if (localStorage.getItem('movies')){
+      localStorage.removeItem('movies')
+    }
   }
 
   return (

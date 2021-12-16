@@ -24,6 +24,7 @@ export function AuthForm(props) {
                         <label htmlFor="name" className="auth__label">Имя</label>
                         <input onChange={ handleChange }
                         value={ values.name || ''}
+                        pattern='[A-Za-zА-Яа-яЁё0-9\s\-]*'
                         className={`auth__input ${errors.name && 'auth__input_error'}`}
                         type="text" 
                         minLength="2"
