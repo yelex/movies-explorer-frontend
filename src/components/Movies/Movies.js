@@ -33,8 +33,12 @@ function Movies() {
     if (localStorage.getItem('resultMovies')){
       setResultMovies(JSON.parse(localStorage.getItem('resultMovies')))
     }
+    if (localStorage.getItem('isShortMovies')){
+      setIsShortMovies(localStorage.getItem('isShortMovies')==="true")
+    }
     setFirstExtraRow();
   }, [])
+
 
   React.useEffect(()=>{
     window.addEventListener('resize', setFirstExtraRow)
@@ -63,7 +67,7 @@ function Movies() {
   }, [visibleMovies])
 
   React.useEffect(()=>{
-    setInitialMovies()
+    setAllInitialMovies()
   },[])
 
   function clearMovies(){
@@ -72,7 +76,7 @@ function Movies() {
     setIsMoreBtnVisible(false);
   }
 
-  function setInitialMovies(){
+  function setAllInitialMovies(){
     setIsPreloaderVisible(true);
     getAllMovies().then(data=>{
       setIsPreloaderVisible(false);
@@ -87,11 +91,13 @@ function Movies() {
   }
 
   function handleShortMovies(){
-    setIsShortMovies(!isShortMovies);
+    setIsShortMovies(!isShortMovies)
   }
 
   function handleSubmit(keyword){
     clearMovies();
+    localStorage.setItem('isShortMovies', isShortMovies);
+    localStorage.setItem('keyword', keyword);
     const filteredData = getMatchedFilms(allMovies, keyword, isShortMovies);
     if (filteredData.length!==0){
       localStorage.setItem('resultMovies', JSON.stringify(filteredData));
@@ -108,7 +114,7 @@ function Movies() {
 
     <SearchForm onSubmit={handleSubmit} 
     isShortMovies={ isShortMovies }
-    onShortMovies={handleShortMovies}/>
+    onShortMovies={ handleShortMovies }/>
 
     <MoviesCardList isSaved={false} 
                     isEmptyResults={isEmptyResults} 

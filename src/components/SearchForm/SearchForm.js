@@ -1,9 +1,16 @@
 import './SearchForm.css';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 function SearchForm(props) {
-
+  const location = useLocation();
   const [keyword, setKeyword ] = React.useState('');
+
+  React.useEffect(()=>{
+    if (localStorage.getItem('keyword') && location.pathname==="/movies"){
+      setKeyword(localStorage.getItem('keyword'))
+    }
+  },[])
 
   function handleChange(evt){
     setKeyword(evt.target.value);
