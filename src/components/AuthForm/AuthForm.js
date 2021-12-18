@@ -41,6 +41,7 @@ export function AuthForm(props) {
                         className={`auth__input ${errors.email && 'auth__input_error'}`}
                         type="email"
                         name="email"
+                        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
                         minLength="2" 
                         maxLength="40" 
                         required/>
