@@ -14,9 +14,12 @@ function SavedMovies() {
   const [ resultMovies, setResultMovies ] = React.useState([]);
   const [ isEmptyResults, setIsEmptyResults ] = React.useState(false);
   const [ isShortMovies, setIsShortMovies ] = React.useState(false);
+  const [ keyword, setKeyword ] = React.useState('');
 
   React.useEffect(()=>{
+    setIsPreloaderVisible(true);
     getSavedMovies().then(savedMovies => {
+      setIsPreloaderVisible(false);
       setSavedMovies(savedMovies)
       setResultMovies(savedMovies)
     })
@@ -26,8 +29,18 @@ function SavedMovies() {
     setResultMovies([]);
   }
 
+  function updateResults(keyword, isShortMovies){
+    const filteredData = getMatchedFilms(savedMovies, keyword, isShortMovies);
+    if (filteredData.length!==0){
+      setIsEmptyResults(false);
+      setResultMovies(filteredData);
+      console.log(filteredData)
+    } else {
+      setIsEmptyResults(true);
+    }
+  }
+
   function handleRemoveMovie(movieId){
-    console.log('in RemoveMovie')
     removeMovieFromSaved(movieId).then(() => {
       setSavedMovies((state) => state.filter((m) => m.movieId !== movieId));
       setResultMovies((state) => state.filter((m) => m.movieId !== movieId));
@@ -36,23 +49,13 @@ function SavedMovies() {
 
   function handleShortMovies(){
     setIsShortMovies(!isShortMovies);
+    updateResults(keyword, !isShortMovies);
   }
 
   function handleSubmit(keyword){
-
-    setIsPreloaderVisible(true);
     clearMovies();
-
-    const filteredData = getMatchedFilms(savedMovies, keyword, isShortMovies);
-    setIsPreloaderVisible(false);
-    if (filteredData.length!==0){
-      localStorage.setItem('savedMovies', JSON.stringify(filteredData));
-      setIsEmptyResults(false);
-      setResultMovies(filteredData);
-      console.log(filteredData)
-    } else {
-      setIsEmptyResults(true);
-    }
+    setKeyword(keyword);
+    updateResults(keyword, isShortMovies);
   }
 
   return (

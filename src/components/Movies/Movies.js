@@ -38,12 +38,6 @@ function Movies() {
   })
 
   React.useEffect(()=>{
-    if (resultMovies.length===0){
-      setIsEmptyResults(true)
-    }
-  },[resultMovies])
-
-  React.useEffect(()=>{
     if (localStorage.getItem('keyword')) {
       setKeyword(localStorage.getItem('keyword'))
     }
@@ -68,6 +62,14 @@ function Movies() {
   }
 
   React.useEffect(()=>{
+    if (resultMovies.length===0){
+      setIsEmptyResults(true)
+    } else {
+      setIsEmptyResults(false)
+    }
+  },[resultMovies])
+
+  React.useEffect(()=>{
     if (visibleMovies.length < resultMovies.length){
       setIsMoreBtnVisible(true)
     } else {
@@ -86,9 +88,7 @@ function Movies() {
   }
 
   function setAllInitialMovies(){
-    setIsPreloaderVisible(true);
     getAllMovies().then(data=>{
-      setIsPreloaderVisible(false);
       setAllMovies(data);
     })
   }
