@@ -34,6 +34,13 @@ function App() {
     handleTokenCheck();
   },[])
 
+  function setupCurrentUser(){
+    getInfoAboutMe().then(
+      ({email, name, _id}) => {
+        setCurrentUser({email, name, _id})}
+    )
+  }
+
   function resetServerError(){
     setServerErrorText('');
   }
@@ -71,11 +78,8 @@ function App() {
       .then(() => {
         setIsLoggedIn(true);
         history.push('/movies');
-        setServerErrorText('')
-        getInfoAboutMe().then(
-          ({email, name, _id}) => {
-            setCurrentUser({email, name, _id})}
-        )
+        setServerErrorText('');
+        setupCurrentUser();
       })
       .catch(err => {
         console.log(err);
@@ -87,7 +91,9 @@ function App() {
     console.log(name, email, password);
     register(name, email, password).then((res) => {
         if(res){
-          history.push('/signin');
+          setIsLoggedIn(true);
+          history.push('/movies');
+          setupCurrentUser();
         }
         setServerErrorText('')
       })
@@ -98,6 +104,7 @@ function App() {
   }
 
   function handleTokenCheck(){
+    console.log('token checked')
     getInfoAboutMe()
     .then(({email, name, _id}) => {
       setIsLoggedIn(true);

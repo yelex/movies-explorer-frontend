@@ -8,16 +8,24 @@ function Profile(props) {
 
   const [ isEditMode, setIsEditMode ] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
-  const { values, setValues, isValid, setIsValid, handleChange } = useFormWithValidation(()=>{
+  const { values, setValues, isValid, setIsValid, handleChange } = useFormWithValidation((event)=>{
     props.resetSuccessUpdate();
     props.resetServerError();
-
   });
   const { name, email } = values;
 
   React.useEffect(()=>{
+    const strValues = JSON.stringify(values);
+    const {name, email} = currentUser;
+    const strCurrentUser = JSON.stringify({name, email});
+    if (strValues===strCurrentUser){
+      setIsValid(false);
+    }
+  },[values.name, values.email])
+
+  React.useEffect(()=>{
     if (props.isSuccessUpdate){
-      handleEdit()
+      handleEditMode()
     }
   },[props.isSuccessUpdate])
 
@@ -29,13 +37,12 @@ function Profile(props) {
     setValues({name: currentUser.name, email: currentUser.email})
   }, [currentUser.name, currentUser.email])
 
-  function handleEdit(){
+  function handleEditMode(){
     setIsEditMode(!isEditMode);
   }
 
   function handleSubmit(e){
     e.preventDefault();
-    console.log('submit clicked')
     props.onChange(name, email);
     setIsValid(false);
   }
@@ -71,6 +78,7 @@ function Profile(props) {
             name="email"
             minLength="2" 
             maxLength="40" 
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
             required={true}
             type="email"
             value={ email || ''} 
@@ -91,7 +99,7 @@ function Profile(props) {
             </li> :
             <>
               <li className="profile__btn-item" key="edit">
-                <button type="button" className="profile__btn" onClick={handleEdit}>Редактировать</button>
+                <button type="button" className="profile__btn" onClick={handleEditMode}>Редактировать</button>
               </li>
               <li className="profile__btn-item" key="signout">
                 <button type="button" 

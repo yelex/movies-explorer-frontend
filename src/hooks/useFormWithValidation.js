@@ -12,7 +12,7 @@ export function useFormWithValidation(callback) {
     setValues({...values, [name]: value});
     setErrors({...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());
-    callback();
+    callback(event);
   };
 
   const resetForm = React.useCallback(
