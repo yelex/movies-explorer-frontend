@@ -10,8 +10,9 @@ import { getFirstExtraRow, getMatchedFilms } from '../../utils/utils';
 
 
 function Movies() {
-  const [ movies, setMovies ] = React.useState([]);
-  const [ renderedMovies, setRenderedMovies ] = React.useState([]);
+  const [ allMovies, setAllMovies ] = React.useState([]);
+  const [ resultMovies, setResultMovies ] = React.useState([]);
+  const [ visibleMovies, setVisibleMovies ] = React.useState([]);
   const [ isPreloaderVisible, setIsPreloaderVisible ] = React.useState(false);
   const [ isEmptyResults, setIsEmptyResults ] = React.useState(false);
   const [ isMoreBtnVisible, setIsMoreBtnVisible ] = React.useState(false);
@@ -26,11 +27,11 @@ function Movies() {
         return movie.movieId
       }))
     })
-  }, [movies])
+  }, [resultMovies])
 
   React.useEffect(()=>{
-    if (localStorage.getItem('movies')){
-      setMovies(JSON.parse(localStorage.getItem('movies')))
+    if (localStorage.getItem('resultMovies')){
+      setResultMovies(JSON.parse(localStorage.getItem('resultMovies')))
     }
     setFirstExtraRow();
   }, [])
@@ -43,8 +44,8 @@ function Movies() {
   })
 
   React.useEffect(()=>{
-    setRenderedMovies(movies.slice(0,firstCards))
-  }, [movies]);
+    setVisibleMovies(resultMovies.slice(0,firstCards))
+  }, [resultMovies]);
 
   function setFirstExtraRow(){
     const width = window.innerWidth;
@@ -54,23 +55,35 @@ function Movies() {
   }
 
   React.useEffect(()=>{
-    if (renderedMovies.length < movies.length){
+    if (visibleMovies.length < resultMovies.length){
       setIsMoreBtnVisible(true)
     } else {
       setIsMoreBtnVisible(false)
     }
-  }, [renderedMovies])
+  }, [visibleMovies])
+
+  React.useEffect(()=>{
+    setInitialMovies()
+  },[])
 
   function clearMovies(){
-    localStorage.removeItem('movies');
-    setMovies([]);
+    localStorage.removeItem('resultMovies');
+    setResultMovies([]);
     setIsMoreBtnVisible(false);
   }
 
+  function setInitialMovies(){
+    setIsPreloaderVisible(true);
+    getAllMovies().then(data=>{
+      setIsPreloaderVisible(false);
+      setAllMovies(data);
+    })
+  }
+
   function handleMore(){
-    let count = renderedMovies.length;
-    const newCount = Math.min(movies.length, count+=extraCards);
-    setRenderedMovies(movies.slice(0, newCount));
+    let count = visibleMovies.length;
+    const newCount = Math.min(resultMovies.length, count+=extraCards);
+    setVisibleMovies(resultMovies.slice(0, newCount));
   }
 
   function handleShortMovies(){
@@ -78,19 +91,15 @@ function Movies() {
   }
 
   function handleSubmit(keyword){
-
-    setIsPreloaderVisible(true);
     clearMovies();
-    getAllMovies().then(data => {
-      setIsPreloaderVisible(false);
-      const filteredData = getMatchedFilms(data, keyword, isShortMovies);
-      if (filteredData.length!==0){
-        localStorage.setItem('movies', JSON.stringify(filteredData));
-        setIsEmptyResults(false);
-        setMovies(filteredData);
-      } else {
-        setIsEmptyResults(true);
-      }}).catch(err => console.log(err));
+    const filteredData = getMatchedFilms(allMovies, keyword, isShortMovies);
+    if (filteredData.length!==0){
+      localStorage.setItem('resultMovies', JSON.stringify(filteredData));
+      setIsEmptyResults(false);
+      setResultMovies(filteredData);
+    } else {
+      setIsEmptyResults(true);
+    }
   }
 
   return (
@@ -103,7 +112,7 @@ function Movies() {
 
     <MoviesCardList isSaved={false} 
                     isEmptyResults={isEmptyResults} 
-                    movies={renderedMovies}
+                    movies={visibleMovies}
                     savedMoviesIds={savedMoviesIds}
                     isPreloaderVisible={isPreloaderVisible}
                     isMoreBtnVisible={isMoreBtnVisible}

@@ -25,8 +25,7 @@ function SearchForm(props) {
             <input value={ keyword } 
                           className="search-form__input" 
                           id="search-form" name="search-form" type="text" 
-                          placeholder="Фильм" minLength="2" 
-                          maxLength="100"
+                          placeholder="Фильм"
                           onChange={handleChange}
                           required/>
             <button type="submit" className="search-form__submit-btn">
