@@ -23,12 +23,12 @@ function AboutMe() {
                             и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.
                         </p>
                         <ul className="student__contacts">
-                            <li className="student__contact">
+                            <li key="facebook" className="student__contact">
                                 <a href="https://ru-ru.facebook.com" className="student__contact-link">
                                     Facebook
                                 </a>
                             </li>
-                            <li className="student__contact">
+                            <li key="github" className="student__contact">
                                 <a href="https://github.com" className="student__contact-link">
                                     Github
                                 </a>
@@ -41,7 +41,7 @@ function AboutMe() {
                     Портфолио
                 </h4>
                 <ul className="student__portfolio-links">
-                    <li className="student__portfolio-item">
+                    <li key="static" className="student__portfolio-item">
                         <div className="student__text-container">
                             <a href="https://github.com" className="student__portfolio-link">
                                 Статичный сайт
@@ -49,7 +49,7 @@ function AboutMe() {
                             <img src={ arrowPath } alt="Стрелка" className="student__arrow" />
                         </div>
                     </li>
-                    <li className="student__portfolio-item">
+                    <li key="adaptive" className="student__portfolio-item">
                         <div className="student__text-container">
                             <a href="https://github.com" className="student__portfolio-link">
                                 Адаптивный сайт
@@ -57,7 +57,7 @@ function AboutMe() {
                             <img src={ arrowPath } alt="Стрелка" className="student__arrow" />
                         </div>
                     </li>
-                    <li className="student__portfolio-item">
+                    <li key="landing" className="student__portfolio-item">
                         <div className="student__text-container">
                             <a href="https://github.com" className="student__portfolio-link">
                                 Одностраничное приложение
