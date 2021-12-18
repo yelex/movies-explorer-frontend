@@ -19,7 +19,8 @@ function Movies() {
   const [ isShortMovies, setIsShortMovies ] = React.useState(false);
   const [ firstCards, setFirstCards ] = React.useState(0);
   const [ extraCards, setExtraCards ] = React.useState(0);
-  const [ savedMoviesIds, setSavedMoviesIds ] = React.useState([])
+  const [ savedMoviesIds, setSavedMoviesIds ] = React.useState([]);
+  const [ keyword, setKeyword ] = React.useState('');
 
   React.useEffect(()=>{
     getSavedMovies().then(savedMovies => {
@@ -30,6 +31,22 @@ function Movies() {
   }, [resultMovies])
 
   React.useEffect(()=>{
+    window.addEventListener('resize', setFirstExtraRow)
+    return () => {
+      window.removeEventListener('resize', setFirstExtraRow)
+    }
+  })
+
+  React.useEffect(()=>{
+    if (resultMovies.length===0){
+      setIsEmptyResults(true)
+    }
+  },[resultMovies])
+
+  React.useEffect(()=>{
+    if (localStorage.getItem('keyword')) {
+      setKeyword(localStorage.getItem('keyword'))
+    }
     if (localStorage.getItem('resultMovies')){
       setResultMovies(JSON.parse(localStorage.getItem('resultMovies')))
     }
@@ -38,14 +55,6 @@ function Movies() {
     }
     setFirstExtraRow();
   }, [])
-
-
-  React.useEffect(()=>{
-    window.addEventListener('resize', setFirstExtraRow)
-    return () => {
-      window.removeEventListener('resize', setFirstExtraRow)
-    }
-  })
 
   React.useEffect(()=>{
     setVisibleMovies(resultMovies.slice(0,firstCards))
@@ -84,20 +93,8 @@ function Movies() {
     })
   }
 
-  function handleMore(){
-    let count = visibleMovies.length;
-    const newCount = Math.min(resultMovies.length, count+=extraCards);
-    setVisibleMovies(resultMovies.slice(0, newCount));
-  }
-
-  function handleShortMovies(){
-    setIsShortMovies(!isShortMovies)
-  }
-
-  function handleSubmit(keyword){
+  function updateResults(keyword, isShortMovies){
     clearMovies();
-    localStorage.setItem('isShortMovies', isShortMovies);
-    localStorage.setItem('keyword', keyword);
     const filteredData = getMatchedFilms(allMovies, keyword, isShortMovies);
     if (filteredData.length!==0){
       localStorage.setItem('resultMovies', JSON.stringify(filteredData));
@@ -106,6 +103,25 @@ function Movies() {
     } else {
       setIsEmptyResults(true);
     }
+  }
+
+  function handleMore(){
+    let count = visibleMovies.length;
+    const newCount = Math.min(resultMovies.length, count+=extraCards);
+    setVisibleMovies(resultMovies.slice(0, newCount));
+  }
+
+  function handleShortMovies(){
+    setIsShortMovies(!isShortMovies);
+    updateResults(keyword, !isShortMovies);
+    localStorage.setItem('isShortMovies', !isShortMovies);
+  }
+
+  function handleSubmit(keyword){
+    clearMovies();
+    localStorage.setItem('keyword', keyword);
+    setKeyword(keyword);
+    updateResults(keyword, isShortMovies);
   }
 
   return (
