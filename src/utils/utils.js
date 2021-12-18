@@ -24,6 +24,7 @@ export const getFirstExtraRow = (width)=>{
 }
 
 export const getMatchedFilms = (data, keyword, isShortMovies)=>{
-  const movies = data.filter(movie => movie['nameRU'].includes(keyword));
+  const regexp = new RegExp(keyword,'i');
+  const movies = data.filter(movie => movie['nameRU'].search(regexp)!==-1);
   return (isShortMovies ? movies.filter(movie => movie['duration']<=40) : movies)
 }
