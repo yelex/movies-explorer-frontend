@@ -9,7 +9,7 @@ import { getAllMovies } from '../../utils/MoviesApi';
 import { getFirstExtraRow, getMatchedFilms } from '../../utils/utils';
 
 
-function Movies() {
+function Movies(props) {
   const [ allMovies, setAllMovies ] = React.useState([]);
   const [ resultMovies, setResultMovies ] = React.useState([]);
   const [ visibleMovies, setVisibleMovies ] = React.useState([]);
@@ -95,6 +95,7 @@ function Movies() {
 
   function updateResults(keyword, isShortMovies){
     clearMovies();
+    props.setupIsDisabledForm(true);
     const filteredData = getMatchedFilms(allMovies, keyword, isShortMovies);
     if (filteredData.length!==0){
       localStorage.setItem('resultMovies', JSON.stringify(filteredData));
@@ -103,6 +104,7 @@ function Movies() {
     } else {
       setIsEmptyResults(true);
     }
+    props.setupIsDisabledForm(false);
   }
 
   function handleMore(){
@@ -130,7 +132,8 @@ function Movies() {
 
     <SearchForm onSubmit={handleSubmit} 
     isShortMovies={ isShortMovies }
-    onShortMovies={ handleShortMovies }/>
+    onShortMovies={ handleShortMovies }
+    isDisabledForm={ props.isDisabledForm }/>
 
     <MoviesCardList isSaved={false} 
                     isEmptyResults={isEmptyResults} 

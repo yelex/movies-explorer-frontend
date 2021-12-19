@@ -35,8 +35,9 @@ function SearchForm(props) {
                   placeholder="Фильм"
                   pattern="^\S+(.*[^\s])*$"
                   onChange={handleChange}
+                  readOnly={props.isDisabledForm}
                   required/>
-            <button type="submit" className="search-form__submit-btn">
+            <button type="submit" className="search-form__submit-btn" disabled={props.isDisabledForm}>
             </button>
           </div>
         </form>

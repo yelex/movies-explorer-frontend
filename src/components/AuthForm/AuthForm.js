@@ -30,6 +30,7 @@ export function AuthForm(props) {
                         minLength="2"
                         maxLength="40"
                         name="name"
+                        readOnly={props.isDisabledForm}
                         required/>
                         {errors.name && <span className="auth__error-text">{errors.name}</span>}
                     </li>
@@ -43,7 +44,8 @@ export function AuthForm(props) {
                         name="email"
                         pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
                         minLength="2" 
-                        maxLength="40" 
+                        maxLength="40"
+                        readOnly={props.isDisabledForm}
                         required/>
                         {errors.email && <span className="auth__error-text">{errors.email}</span>}
                     </li>
@@ -55,7 +57,8 @@ export function AuthForm(props) {
                         name="password"
                         type="password" 
                         minLength="2" 
-                        maxLength="200" 
+                        maxLength="200"
+                        readOnly={props.isDisabledForm}
                         required/>
                         {errors.password && <span className="auth__error-text">{errors.password}</span>}
                     </li>
@@ -64,7 +67,7 @@ export function AuthForm(props) {
                     <p className="auth__server-error">{props.errorServerText}</p>
                     <button type="submit" 
                     className={`auth__submit-btn ${!isValid && 'auth__submit-btn_disabled'}`} 
-                    disabled={!isValid}>{ props.submitBtnText }</button>
+                    disabled={!isValid || props.isDisabledForm}>{ props.submitBtnText }</button>
                 </div>
                 { props.children }
             </form>

@@ -17,6 +17,7 @@ function Register(props) {
     title="Добро пожаловать!"
     formData={ formData }
     onSubmit={ handleSubmit }
+    isDisabledForm={ props.isDisabledForm }
     errorServerText={ props.errorServerText }
     resetServerError={ props.resetServerError }>
       <p className="auth__caption">

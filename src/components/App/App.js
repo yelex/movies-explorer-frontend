@@ -25,7 +25,12 @@ function App() {
   const [ isLoggedInChecked, setIsLoggedInChecked ] = React.useState(false);
   const [ isSuccessUpdate, setIsSuccessUpdate ] = React.useState(false);
   const [ serverErrorText, setServerErrorText ] = React.useState('');
+  const [ isDisabledForm, setIsDisabledForm ] = React.useState(false);
   const history = useHistory();
+
+  React.useEffect(()=>{
+    console.log(`isDisabledForm: ${isDisabledForm}`)
+  }, [isDisabledForm])
   
   React.useEffect(() => {
     document.title = "Диплом"
@@ -65,16 +70,20 @@ function App() {
   }
 
   function handleUpdateUser(name, email){
+    setIsDisabledForm(true);
     updateInfo(name, email).then(()=>{
       setCurrentUser({...currentUser, name, email});
       setIsSuccessUpdate(true);
     }).catch(err=>{
       console.log(err);
       handleErrorMessage(err);
+    }).finally(()=>{
+      setIsDisabledForm(false);
     })
   }
 
   function handleLogin(email, password){
+    setIsDisabledForm(true);
     authorize(email, password)
       .then(() => {
         setIsLoggedIn(true);
@@ -86,10 +95,13 @@ function App() {
         console.log(err);
         handleErrorMessage(err);
       })
+      .finally(()=>{
+        setIsDisabledForm(false)
+      })
   }
 
   function handleRegister(name, email, password){
-    console.log(name, email, password);
+    setIsDisabledForm(true);
     register(name, email, password).then((res) => {
         if(res){
           setIsLoggedIn(true);
@@ -102,10 +114,13 @@ function App() {
         console.log(err)
         handleErrorMessage(err);
       })
+      .finally(()=>{
+        setIsDisabledForm(false);
+      })
   }
 
   function handleTokenCheck(){
-    console.log('token checked')
+
     getInfoAboutMe()
     .then(({email, name, _id}) => {
       setIsLoggedIn(true);
@@ -127,6 +142,10 @@ function App() {
     }
   }
 
+  function setupIsDisabledForm(value){
+    setIsDisabledForm(value)
+  }
+
   return (
     <CurrentUserContext.Provider value={ currentUser }>
       <IsLoggedInContext.Provider value={ isLoggedIn }>
@@ -134,27 +153,30 @@ function App() {
         {!isLoggedInChecked ? <Preloader/> :
             <Switch>
               <ProtectedRoute path="/movies" isLoggedIn={ isLoggedIn }>
-                <Movies />
+                <Movies setupIsDisabledForm={setupIsDisabledForm}/>
               </ProtectedRoute>
               <ProtectedRoute path="/saved-movies" isLoggedIn={ isLoggedIn }>
-                <SavedMovies />
+                <SavedMovies setupIsDisabledForm={setupIsDisabledForm}/>
               </ProtectedRoute>
               <ProtectedRoute path="/profile" 
               isLoggedIn={ isLoggedIn }>
                 <Profile onChange={ handleUpdateUser }
                 onSignOut={ handleSignOut }
+                isDisabledForm={ isDisabledForm }
                 isSuccessUpdate={ isSuccessUpdate }
                 resetSuccessUpdate={ resetSuccessUpdate }
                 errorServerText={ serverErrorText }
                 resetServerError={ resetServerError }/>
               </ProtectedRoute>
               <AuthProtectedRoute isLoggedIn={isLoggedIn} path="/signin">
-                <Login onLogin={ handleLogin } 
+                <Login onLogin={ handleLogin }
+                isDisabledForm={isDisabledForm}
                 errorServerText={ serverErrorText }
                 resetServerError={ resetServerError }/>
               </AuthProtectedRoute>
               <AuthProtectedRoute isLoggedIn={isLoggedIn} path="/signup">
-                <Register onRegister={ handleRegister } 
+                <Register onRegister={ handleRegister }
+                isDisabledForm={isDisabledForm}
                 errorServerText={ serverErrorText }
                 resetServerError={ resetServerError }/>
               </AuthProtectedRoute>

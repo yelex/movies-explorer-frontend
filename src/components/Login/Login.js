@@ -1,3 +1,4 @@
+import React from 'react';
 import { AuthForm } from '../AuthForm/AuthForm';
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
@@ -8,7 +9,7 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onLogin(email, password, formData.setIsValid(false));
+    props.onLogin(email, password);
   };
 
   return (
@@ -17,6 +18,7 @@ function Login(props) {
     title="Рады видеть!"
     formData={ formData }
     onSubmit={ handleSubmit }
+    isDisabledForm={ props.isDisabledForm }
     errorServerText={ props.errorServerText }
     resetServerError={ props.resetServerError }>
       <p className="auth__caption">

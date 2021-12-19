@@ -7,7 +7,7 @@ import Header from '../Header/Header';
 import { getSavedMovies, removeMovieFromSaved } from '../../utils/MainApi';
 import { getMatchedFilms } from '../../utils/utils';
 
-function SavedMovies() {
+function SavedMovies(props) {
 
   const [ savedMovies, setSavedMovies ] = React.useState([]);
   const [ isPreloaderVisible, setIsPreloaderVisible ] = React.useState(false);
@@ -30,6 +30,7 @@ function SavedMovies() {
   }
 
   function updateResults(keyword, isShortMovies){
+    props.setupIsDisabledForm(true);
     const filteredData = getMatchedFilms(savedMovies, keyword, isShortMovies);
     if (filteredData.length!==0){
       setIsEmptyResults(false);
@@ -39,6 +40,7 @@ function SavedMovies() {
       setResultMovies([]);
       setIsEmptyResults(true);
     }
+    props.setupIsDisabledForm(false);
   }
 
   function handleRemoveMovie(movieId){
@@ -65,7 +67,8 @@ function SavedMovies() {
 
     <SearchForm onSubmit={ handleSubmit } 
     isShortMovies={ isShortMovies }
-    onShortMovies={ handleShortMovies }/>
+    onShortMovies={ handleShortMovies }
+    isDisabledForm={ props.isDisabledForm }/>
     <MoviesCardList isSaved={true}
     movies={resultMovies}
     isPreloaderVisible={isPreloaderVisible}

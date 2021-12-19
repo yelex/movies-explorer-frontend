@@ -68,7 +68,7 @@ function Profile(props) {
             minLength="2" 
             maxLength="40" 
             required={true}
-            readOnly={!isEditMode}></input>
+            readOnly={!isEditMode || props.isDisabledForm}></input>
           </li>
           <li className="profile__info-item">
             <label className="profile__label" htmlFor="email">
@@ -83,7 +83,7 @@ function Profile(props) {
             type="email"
             value={ email || ''} 
             onChange={handleChange} 
-            readOnly={!isEditMode}></input>
+            readOnly={!isEditMode || props.isDisabledForm}></input>
           </li>
         </ul>
         {props.isSuccessUpdate ? 
@@ -94,8 +94,8 @@ function Profile(props) {
           {isEditMode ?
             <li className="profile__btn-item" key="submit">
               <button type="submit"
-              className={`profile__save-btn ${!isValid && 'profile__save-btn_disabled'}`}
-              disabled={!isValid}>Сохранить</button>
+              className={`profile__save-btn ${(!isValid || props.isDisabledForm) && 'profile__save-btn_disabled'}`}
+              disabled={!isValid || props.isDisabledForm}>Сохранить</button>
             </li> :
             <>
               <li className="profile__btn-item" key="edit">
