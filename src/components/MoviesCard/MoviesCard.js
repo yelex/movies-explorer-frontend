@@ -6,17 +6,26 @@ import { addMovieToSaved, removeMovieFromSaved } from '../../utils/MainApi';
 
 function MoviesCard(props) {
 
-  const [isLiked, setIsLiked ] = React.useState(false);
-  const [isBtnVisible, setIsBtnVisible ] = React.useState(false);
+  const [ isLiked, setIsLiked ] = React.useState(false);
+  const [ isBtnVisible, setIsBtnVisible ] = React.useState(false);
   const location = useLocation();
 
   React.useEffect(()=>{
     setIsLiked(props.isLiked)
   }, [props.isLiked])
 
+
   function handleHover(){
     if (location.pathname==='/saved-movies'){
       setIsBtnVisible(!isBtnVisible);
+    }
+  }
+
+  function handleLinkClick(){
+    if (props.movie.trailerLink){
+      window.open(props.movie.trailerLink)
+    } else {
+      props.setupErrorMessage('Трейлер не найден');
     }
   }
 
@@ -68,7 +77,15 @@ function MoviesCard(props) {
       nameRU,
       nameEN}).then(()=>{
       setIsLiked(true)
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err)
+      if (err.statusCode && err.error){
+        props.setupErrorMessage(`${err.statusCode} ${err.error}`);
+      } else {
+        props.setupErrorMessage('Возникла ошибка');
+      }
+
+    })
 
   }
 
@@ -77,7 +94,7 @@ function MoviesCard(props) {
         <img className="card__image" 
         alt={props.movie.nameRU} 
         src={!props.isSaved ? `https://api.nomoreparties.co${props.movie.image.url}`: props.movie.image } 
-        onClick={()=>{window.open(props.movie.trailerLink)}}/>
+        onClick={handleLinkClick}/>
         <div className="card__text-container">
             <h3 className="card__title">{ props.movie.nameRU }</h3>
             {location.pathname==='/saved-movies' ? 
