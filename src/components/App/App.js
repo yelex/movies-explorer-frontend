@@ -8,6 +8,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
 import Preloader from '../Preloader/Preloader';
+import { AuthProtectedRoute } from '../AuthProtectedRoute/AuthProtectedRoute';
 import { ProtectedRoute } from '../ProptectedRoute/ProtectedRoute';
 import { IsLoggedInContext } from '../../contexts/IsLoggedInContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -147,16 +148,16 @@ function App() {
                 errorServerText={ serverErrorText }
                 resetServerError={ resetServerError }/>
               </ProtectedRoute>
-              <Route path="/signin">
+              <AuthProtectedRoute isLoggedIn={isLoggedIn} path="/signin">
                 <Login onLogin={ handleLogin } 
                 errorServerText={ serverErrorText }
                 resetServerError={ resetServerError }/>
-              </Route>
-              <Route path="/signup">
+              </AuthProtectedRoute>
+              <AuthProtectedRoute isLoggedIn={isLoggedIn} path="/signup">
                 <Register onRegister={ handleRegister } 
                 errorServerText={ serverErrorText }
                 resetServerError={ resetServerError }/>
-              </Route>
+              </AuthProtectedRoute>
               <Route exact path="/">
                 <Main />
               </Route>
