@@ -120,7 +120,7 @@ function App() {
   function handleSignOut(){
     signOut().then(()=>{
       setIsLoggedIn(false);
-      history.push('/signin');
+      history.push('/');
     }).catch(err => console.log(err));
     if (localStorage.getItem('movies')){
       localStorage.removeItem('movies')
