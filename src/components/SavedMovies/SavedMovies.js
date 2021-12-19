@@ -36,6 +36,7 @@ function SavedMovies() {
       setResultMovies(filteredData);
       console.log(filteredData)
     } else {
+      setResultMovies([]);
       setIsEmptyResults(true);
     }
   }

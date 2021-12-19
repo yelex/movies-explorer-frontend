@@ -33,7 +33,7 @@ function SearchForm(props) {
                   className="search-form__input" 
                   id="search-form" name="search-form" type="text" 
                   placeholder="Фильм"
-                  pattern="^\S+.*[^\s]$"
+                  pattern="^\S+(.*[^\s])*$"
                   onChange={handleChange}
                   required/>
             <button type="submit" className="search-form__submit-btn">
