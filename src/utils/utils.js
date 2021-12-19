@@ -1,4 +1,6 @@
-import { MOBILE_WIDTH, TAB_WIDTH, DESKTOP_WIDTH } from "./constants";
+import { MOBILE_WIDTH, TAB_WIDTH, DESKTOP_WIDTH, 
+        SHORT_MOVIES_DURATION, FIRST_EXTRA_DESKTOP, 
+        FIRST_EXTRA_MOBILE, FIRST_EXTRA_TAB } from "./constants";
 
 export const getResponseData = (res) => {
     if (res.ok) {
@@ -15,22 +17,20 @@ export const extractTime = (numberMins) => {
 
 export const getFirstExtraRow = (width)=>{
   if ((MOBILE_WIDTH <= width) && (width < TAB_WIDTH)){
-    return {first: 5, extra: 2}
+    return FIRST_EXTRA_MOBILE
   }
   if ((TAB_WIDTH <= width) && (width < DESKTOP_WIDTH)){
-    return {first: 8, extra: 2}
+    return FIRST_EXTRA_TAB
   }
-  return {first: 12, extra: 3}
+  return FIRST_EXTRA_DESKTOP
 }
 
 export const getMatchedFilms = (data, keyword, isShortMovies)=>{
   const regexp = new RegExp(keyword,'i');
   if (keyword!==''){
-    console.log('im hereerer2')
     const movies = data.filter(movie => movie['nameRU'].search(regexp)!==-1);
-    return (isShortMovies ? movies.filter(movie => movie['duration']<=40) : movies)
+    return (isShortMovies ? movies.filter(movie => movie['duration']<=SHORT_MOVIES_DURATION) : movies)
   } else {
-    console.log('im hereerer')
-    return (isShortMovies ? data.filter(movie => movie['duration']<=40) : data)
+    return (isShortMovies ? data.filter(movie => movie['duration']<=SHORT_MOVIES_DURATION) : data)
   }
 }

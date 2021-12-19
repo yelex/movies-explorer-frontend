@@ -27,10 +27,6 @@ function App() {
   const [ serverErrorText, setServerErrorText ] = React.useState('');
   const [ isDisabledForm, setIsDisabledForm ] = React.useState(false);
   const history = useHistory();
-
-  React.useEffect(()=>{
-    console.log(`isDisabledForm: ${isDisabledForm}`)
-  }, [isDisabledForm])
   
   React.useEffect(() => {
     document.title = "Диплом"
