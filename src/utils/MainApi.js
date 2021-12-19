@@ -95,7 +95,7 @@ export const addMovieToSaved = ({country, director, duration, year,
 }
 
 export const removeMovieFromSaved = (movieId)=>{
-  console.log(movieId)
+
   return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: 'DELETE',
     headers: {

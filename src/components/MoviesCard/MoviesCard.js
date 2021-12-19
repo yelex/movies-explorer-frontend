@@ -30,7 +30,7 @@ function MoviesCard(props) {
   }
 
   function handleRemoveClick(){
-    console.log('dislike')
+
     const {
       id: movieId} = props.movie;
     removeMovieFromSaved(movieId).then(()=>{
@@ -39,7 +39,7 @@ function MoviesCard(props) {
   }
 
   function handleLikeClick(){
-    console.log('like')
+
     let {country,
       director,
       duration,
@@ -54,17 +54,7 @@ function MoviesCard(props) {
 
     image = `https://api.nomoreparties.co${image}`;
     thumbnail = `https://api.nomoreparties.co${thumbnail}`;
-    console.log({country,
-      director,
-      duration,
-      year,
-      description,
-      image, 
-      thumbnail,
-      trailer,
-      movieId,
-      nameRU,
-      nameEN})
+ 
     addMovieToSaved({country,
       director,
       duration,

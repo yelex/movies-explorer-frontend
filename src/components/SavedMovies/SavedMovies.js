@@ -35,7 +35,6 @@ function SavedMovies(props) {
     if (filteredData.length!==0){
       setIsEmptyResults(false);
       setResultMovies(filteredData);
-      console.log(filteredData)
     } else {
       setResultMovies([]);
       setIsEmptyResults(true);
