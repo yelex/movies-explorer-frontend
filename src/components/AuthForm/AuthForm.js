@@ -5,10 +5,15 @@ import { useHistory } from 'react-router-dom';
 
 export function AuthForm(props) {
     const history = useHistory();
-    
+    const { values, errors, isValid, handleChange } = props.formData;
+
+    React.useEffect(()=>{
+        props.handleErrorMessage('')
+    },[])
+
     return (
         <section className="auth">
-            <form name={`${props.formName }Form`} action="#" 
+            <form name={`${props.formName}Form`} action="#" 
             className="auth__container"
             onSubmit={ props.onSubmit }
             >
@@ -19,30 +24,55 @@ export function AuthForm(props) {
                 <h1 className="auth__title">{ props.title }</h1>
                 <ul className="auth__list-fields">
                     { props.formName==="register" && 
-                    <li className="auth__list-item">
-                        <label for="name" className="auth__label">Имя</label>
-                        <input onChange={ props.onChange } value={ props.name } 
-                        className="auth__input" 
-                        id="name" type="text" minLength="2" 
-                        maxLength="40" required/>
+                    <li className="auth__list-item" key="register">
+                        <label htmlFor="name" className="auth__label">Имя</label>
+                        <input onChange={ handleChange }
+                        value={ values.name || ''}
+                        pattern='[A-Za-zА-Яа-яЁё0-9\s\-]*'
+                        className={`auth__input ${errors.name && 'auth__input_error'}`}
+                        type="text" 
+                        minLength="2"
+                        maxLength="40"
+                        name="name"
+                        readOnly={props.isDisabledForm}
+                        required/>
+                        {errors.name && <span className="auth__error-text">{errors.name}</span>}
                     </li>
                     }
-                    <li className="auth__list-item">
-                        <label for="email" className="auth__label">E-mail</label>
-                        <input onChange={ props.onChange } value={ props.email } 
-                        className="auth__input" 
-                        id="email" type="email" minLength="2" 
-                        maxLength="40" required/>
+                    <li className="auth__list-item" key="email">
+                        <label htmlFor="email" className="auth__label">E-mail</label>
+                        <input onChange={ handleChange }
+                        value={ values.email || '' } 
+                        className={`auth__input ${errors.email && 'auth__input_error'}`}
+                        type="email"
+                        name="email"
+                        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                        minLength="2" 
+                        maxLength="40"
+                        readOnly={props.isDisabledForm}
+                        required/>
+                        {errors.email && <span className="auth__error-text">{errors.email}</span>}
                     </li>
-                    <li className="auth__list-item">
-                        <label for="password" className="auth__label">Пароль</label>
-                        <input onChange={ props.onChange } value={ props.password } 
-                        className="auth__input" id="password" type="password" 
-                        minLength="2" maxLength="200" required/>
+                    <li className="auth__list-item" key="password">
+                        <label htmlFor="password" className="auth__label">Пароль</label>
+                        <input onChange={ handleChange } 
+                        value={ values.password || '' } 
+                        className="auth__input" 
+                        name="password"
+                        type="password" 
+                        minLength="2" 
+                        maxLength="200"
+                        readOnly={props.isDisabledForm}
+                        required/>
+                        {errors.password && <span className="auth__error-text">{errors.password}</span>}
                     </li>
                 </ul>
-
-                <button type="submit" className="auth__submit-btn">{ props.submitBtnText }</button>
+                <div className="auth__btn-container">
+                    <p className="auth__server-error">{props.errorServerText}</p>
+                    <button type="submit" 
+                    className={`auth__submit-btn ${!isValid && 'auth__submit-btn_disabled'}`} 
+                    disabled={!isValid || props.isDisabledForm}>{ props.submitBtnText }</button>
+                </div>
                 { props.children }
             </form>
         </section>

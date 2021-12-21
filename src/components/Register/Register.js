@@ -1,12 +1,26 @@
-import React from 'react';
 import { AuthForm } from '../AuthForm/AuthForm';
 import { Link } from 'react-router-dom';
+import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
-function Register() {
+function Register(props) {
+  const formData = useFormWithValidation(props.resetServerError);
+  const { name, email, password } = formData.values;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.onRegister(name, email, password);
+  };
+
   return (
     <AuthForm formName="register" 
     submitBtnText="Зарегистрироваться" 
-    title="Добро пожаловать!">
+    title="Добро пожаловать!"
+    formData={ formData }
+    onSubmit={ handleSubmit }
+    isDisabledForm={ props.isDisabledForm }
+    handleErrorMessage={props.handleErrorMessage}
+    errorServerText={ props.errorServerText }
+    resetServerError={ props.resetServerError }>
       <p className="auth__caption">
       Уже зарегистрированы? <Link to="/signin" className="auth__link">Войти</Link>
       </p>

@@ -3,6 +3,7 @@ import './AuthNav.css';
 import { Link } from 'react-router-dom';
 
 function AuthNav(){
+
     return (
         <ul className="auth-nav__list">
             <li className="auth-nav__btn">

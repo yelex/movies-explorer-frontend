@@ -11,7 +11,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 function Header(props) {
   const isLoggedIn = React.useContext(IsLoggedInContext);
   const [width, setWidth] = React.useState(window.innerWidth);
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen ] = React.useState(false);
+  const [ isBurgerMenuOpen, setIsBurgerMenuOpen ] = React.useState(false);
   const isMobile = width <= 768;
 
   function handleBurgerBtnClick(){
