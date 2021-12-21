@@ -13,13 +13,14 @@ function Login(props) {
   };
 
   return (
-    <AuthForm formName="login" 
+    <AuthForm formName="login"
     submitBtnText="Войти" 
     title="Рады видеть!"
     formData={ formData }
     onSubmit={ handleSubmit }
     isDisabledForm={ props.isDisabledForm }
     errorServerText={ props.errorServerText }
+    handleErrorMessage={props.handleErrorMessage}
     resetServerError={ props.resetServerError }>
       <p className="auth__caption">
       Ещё не зарегистрированы? <Link to="/signup" className="auth__link">Регистрация</Link>

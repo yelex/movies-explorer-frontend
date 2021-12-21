@@ -31,6 +31,10 @@ function Movies(props) {
   }, [resultMovies])
 
   React.useEffect(()=>{
+    setAllInitialMovies()
+  },[])
+
+  React.useEffect(()=>{
     window.addEventListener('resize', setFirstExtraRow)
     return () => {
       window.removeEventListener('resize', setFirstExtraRow)
@@ -38,17 +42,20 @@ function Movies(props) {
   })
 
   React.useEffect(()=>{
-    if (localStorage.getItem('keyword')) {
-      setKeyword(localStorage.getItem('keyword'))
+    const localKeyword = localStorage.getItem('keyword');
+    const localMovies = localStorage.getItem('resultMovies');
+    const localIsShortMovies = localStorage.getItem('isShortMovies');
+
+    if (localKeyword && localMovies && localIsShortMovies){
+      setKeyword(localKeyword);
+      setResultMovies(JSON.parse(localMovies));
+      setIsShortMovies(localIsShortMovies==="true")
+    } else {
+      setResultMovies(allMovies)
     }
-    if (localStorage.getItem('resultMovies')){
-      setResultMovies(JSON.parse(localStorage.getItem('resultMovies')))
-    }
-    if (localStorage.getItem('isShortMovies')){
-      setIsShortMovies(localStorage.getItem('isShortMovies')==="true")
-    }
+
     setFirstExtraRow();
-  }, [])
+  }, [allMovies])
 
   React.useEffect(()=>{
     setVisibleMovies(resultMovies.slice(0,firstCards))
@@ -62,24 +69,12 @@ function Movies(props) {
   }
 
   React.useEffect(()=>{
-    if (resultMovies.length===0){
-      setIsEmptyResults(true)
-    } else {
-      setIsEmptyResults(false)
-    }
-  },[resultMovies])
-
-  React.useEffect(()=>{
     if (visibleMovies.length < resultMovies.length){
       setIsMoreBtnVisible(true)
     } else {
       setIsMoreBtnVisible(false)
     }
   }, [visibleMovies])
-
-  React.useEffect(()=>{
-    setAllInitialMovies()
-  },[])
 
   function clearMovies(){
     localStorage.removeItem('resultMovies');
@@ -88,7 +83,9 @@ function Movies(props) {
   }
 
   function setAllInitialMovies(){
+    setIsPreloaderVisible(true);
     getAllMovies().then(data=>{
+      setIsPreloaderVisible(false);
       setAllMovies(data);
     })
   }

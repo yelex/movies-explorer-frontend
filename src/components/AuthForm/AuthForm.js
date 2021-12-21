@@ -7,6 +7,10 @@ export function AuthForm(props) {
     const history = useHistory();
     const { values, errors, isValid, handleChange } = props.formData;
 
+    React.useEffect(()=>{
+        props.handleErrorMessage('')
+    },[])
+
     return (
         <section className="auth">
             <form name={`${props.formName}Form`} action="#" 

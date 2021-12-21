@@ -174,12 +174,14 @@ function App() {
               <AuthProtectedRoute isLoggedIn={isLoggedIn} path="/signin">
                 <Login onLogin={ handleLogin }
                 isDisabledForm={isDisabledForm}
+                handleErrorMessage={handleErrorMessage}
                 errorServerText={ serverErrorText }
                 resetServerError={ resetServerError }/>
               </AuthProtectedRoute>
               <AuthProtectedRoute isLoggedIn={isLoggedIn} path="/signup">
                 <Register onRegister={ handleRegister }
                 isDisabledForm={isDisabledForm}
+                handleErrorMessage={handleErrorMessage}
                 errorServerText={ serverErrorText }
                 resetServerError={ resetServerError }/>
               </AuthProtectedRoute>
