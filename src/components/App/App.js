@@ -137,6 +137,12 @@ function App() {
     if (localStorage.getItem('resultMovies')){
       localStorage.removeItem('resultMovies')
     }
+    if (localStorage.getItem('keyword')) {
+      localStorage.removeItem('keyword')
+    }
+    if (localStorage.getItem('isShortMovies')){
+      localStorage.removeItem('isShortMovies')
+    }
   }
 
   function setupIsDisabledForm(value){
