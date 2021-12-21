@@ -133,8 +133,9 @@ function App() {
       setIsLoggedIn(false);
       history.push('/');
     }).catch(err => console.log(err));
-    if (localStorage.getItem('movies')){
-      localStorage.removeItem('movies')
+    
+    if (localStorage.getItem('resultMovies')){
+      localStorage.removeItem('resultMovies')
     }
   }
 
